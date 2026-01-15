@@ -341,3 +341,154 @@ enable all github plugin and add webhook triggers
 # session 43 28/10/2025 **********************************************************************************************
 project - satyam-git notes-app
 
+🚀 Jenkins Pipeline Using Groovy (Declarative Pipeline)
+Pipeline Overview
+Project: Notes App
+Pipeline Type: Declarative
+
+Purpose:
+Automate CI/CD using Jenkins Pipeline:
+Checkout code
+Build Docker image
+Stop old container
+Run new container
+Verify deployment
+
+📝 Jenkins Job Configuration
+
+Jenkins Dashboard → New Item
+Enter name: notes-app-pipeline
+Select Pipeline
+Description:
+Notes App CI/CD Pipeline using Docker
+
+Scroll to Pipeline
+
+Select:
+
+Definition: Pipeline script
+
+📜 Declarative Pipeline Script (Groovy)
+
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME     = "notes-app:latest"
+        CONTAINER_NAME = "notes-app"
+        PORT           = "9092"
+        HOST           = "3.109.187.88"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'master',
+                    url: 'https://github.com/your-org/notes-app.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                    echo "===== Building Docker Image ====="
+                    docker build -t $IMAGE_NAME .
+                '''
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                sh '''
+                    echo "===== Stopping Old Container ====="
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                sh '''
+                    echo "===== Running New Container ====="
+                    docker run -d \
+                      --name $CONTAINER_NAME \
+                      -p $PORT:80 \
+                      $IMAGE_NAME
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    echo "===== Verifying Application ====="
+                    sleep 10
+                    curl -s http://$HOST:$PORT | head -n 20
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Notes app deployed successfully!"
+            echo "🌐 Access URL: http://$HOST:$PORT"
+        }
+        failure {
+            echo "❌ Build or deployment failed. Check Jenkins logs."
+        }
+    }
+}
+
+🔍 Explanation of Pipeline Sections
+agent any
+Pipeline can run on any available Jenkins agent
+environment
+Centralized environment variables
+Easy to update image name, port, host without editing logic
+stages
+Each stage performs a single responsibility:
+Checkout Code
+Pulls source code from GitHub
+Build Docker Image
+Builds Docker image from Dockerfile
+Stop Old Container
+Gracefully stops and removes old container
+|| true prevents pipeline failure if container doesn’t exist
+Run New Container
+Deploys new container on specified port
+Verify Deployment
+Uses curl to validate application response
+post Section
+Executes actions after pipeline completion
+Condition	Action
+success	Success message + app URL
+failure	Failure message + log reference
+
+🔄 CI/CD Flow (Pipeline-Based)
+GitHub Commit
+     ↓
+Jenkins Pipeline
+     ↓
+Docker Build
+     ↓
+Docker Deploy
+     ↓
+Application Live on EC2
+
+✅ Advantages of Pipeline Over Freestyle
+✔ Pipeline as Code
+✔ Version controlled
+✔ Better readability
+✔ Scalable & reusable
+✔ Industry standard
+
+▶️ Run the Pipeline
+Click Save
+Click Build Now
+Monitor:
+Stage-wise execution
+Console output
+Success / failure status
