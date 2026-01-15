@@ -1,0 +1,343 @@
+# session 41 25/10/2025
+🔁 CI/CD Automation Tools Overview
+Popular CI/CD tools:
+GitLab CI/CD
+GitHub Actions
+Jenkins
+Bitbucket Pipelines
+Azure DevOps Pipelines
+AWS CodePipeline
+
+👉 In your learning path:
+GitLab
+GitHub Actions
+Jenkins (main focus)
+
+🔧 What is Jenkins?
+Open-source (free to use) CI/CD automation tool
+Written in Java
+Used for:
+Continuous Integration (CI)
+Continuous Deployment / Delivery (CD)
+
+🔄 CI/CD Concepts
+Continuous Integration (CI)
+Developers frequently commit code to a shared repository (GitHub)
+Jenkins automatically:
+Pulls code
+Builds it
+Runs tests
+
+Continuous Deployment (CD)
+After successful build & tests:
+Application is automatically deployed to servers
+
+📌 CI/CD Flow (High Level)
+Developer
+   |
+   | (code commit)
+   v
+GitHub Repository
+   |
+   v
+Jenkins
+   |
+   |--> Build
+   |--> Test
+   |--> Deploy
+   |
+   |--> Logs
+   |--> Notifications
+   |--> Email alerts
+
+🧱 Key Jenkins Components
+1️⃣ Jenkins Controller (Master)
+Central server
+Manages:
+Jobs
+Pipelines
+Plugins
+Credentials
+Agents
+
+2️⃣ Jenkins Agents (Nodes / Slaves)
+Execute jobs
+Used for:
+Distributed builds
+Scaling
+Different environments (Linux, Windows, Docker)
+
+3️⃣ Plugins
+Extend Jenkins functionality
+Examples:
+Git
+GitHub
+Pipeline
+Email Extension
+Docker
+
+4️⃣ Credential Manager
+Securely stores:
+GitHub tokens
+SSH keys
+Passwords
+Cloud credentials
+
+5️⃣ Pipelines
+CI/CD defined as code
+Written in Groovy
+Stored as:
+Jenkinsfile
+
+📄 Jenkinsfile (Pipeline as Code)
+Written in Groovy
+Two types:
+Declarative
+Scripted
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}
+
+
+☁️ Jenkins Setup on AWS (EC2)
+Step 1️⃣ Launch EC2 Instance
+OS: Ubuntu
+Instance type: t2.micro (free tier)
+Create & download PEM key
+
+Step 2️⃣ Set Permission to PEM Key (Local Machine)
+chmod 400 jenkins-training.pem
+
+Step 3️⃣ Login to EC2
+ssh -i "jenkins-training.pem" ubuntu@ec2-43-204-107-152.ap-south-1.compute.amazonaws.com
+
+⚙️ Jenkins Installation (Official Method – LTS)
+Step 4️⃣ Update System
+sudo apt update
+
+Step 5️⃣ Install Java (Required)
+sudo apt install fontconfig openjdk-21-jre
+java -version
+
+Step 6️⃣ Add Jenkins Repository (LTS)
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+Step 7️⃣ Install Jenkins
+sudo apt update
+sudo apt install jenkins
+
+Step 8️⃣ Start Jenkins
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+
+Step 9️⃣ Get Initial Admin Password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+🌐 Jenkins UI Access
+Step 🔟 Open Port 8080 (AWS Security Group)
+EC2 → Security Groups
+Inbound rule:
+Port: 8080
+Source: Your IP / 0.0.0.0/0 (for training)
+
+Step 1️⃣1️⃣ Access Jenkins in Browser
+http://43.204.107.152:8080/
+
+Paste the initial admin password and complete setup.
+
+✅ CI/CD concepts
+✅ Jenkins architecture
+✅ Jenkins installation on AWS EC2
+✅ Jenkins UI access
+✅ Foundation for pipelines & automation
+
+
+
+# session 42 28/10/2025
+🔧 EC2 Preparation – Install Docker
+Prepare the EC2 instance by installing Docker so Jenkins can build and run containers.
+
+sudo apt update
+sudo apt install docker.io -y
+
+Enable and start Docker:
+
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo systemctl status docker
+
+
+Allow Jenkins to access Docker:
+
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+
+👉 This allows Jenkins jobs to execute Docker commands without sudo.
+🧩 Jenkins Job Types
+To create a job:
+Jenkins Dashboard → New Item
+Enter item name: New-Project
+
+Select an item type
+
+📌 Available Job Types
+1️⃣ Freestyle Project
+Simple, shell-based jobs
+Suitable for small projects
+Commands written in Execute Shell
+
+2️⃣ Pipeline
+Code-based automation
+CI/CD defined as code (Jenkinsfile)
+Automatically triggers on code changes
+Pipeline Types:
+Declarative – Simple, readable, structured (recommended)
+Scripted – Advanced logic, loops, conditions
+
+3️⃣ Multi-Configuration Project (Matrix Project)
+Same job runs in multiple environments
+Example:
+Different OS versions
+Multiple JDK or Node versions
+Supports parallel execution
+
+4️⃣ Folder
+Organizes jobs in a hierarchical structure
+Useful when:
+Multiple teams work on one Jenkins instance
+Projects need logical grouping
+Improves navigation and management
+
+5️⃣ Multibranch Pipeline
+Automatically creates pipelines for each branch
+Detects branches from a GitHub repository
+Each branch has its own Jenkinsfile
+
+6️⃣ Organization Folder
+Scans an entire GitHub organization
+Automatically creates:
+Multibranch pipelines for each repository
+Used in large enterprise setups
+
+🛠️ Freestyle Project – Hands-on CI/CD Example
+Step 1️⃣ Create Freestyle Project
+Select Freestyle Project
+Click OK
+Step 2️⃣ Configure Project
+Add Description
+Select GitHub Project
+Enter GitHub Repository URL
+Credentials: None (for public repo)
+Branch: master or main
+
+Step 3️⃣ Enable GitHub Webhook Trigger
+Check:
+GitHub hook trigger for GITScm polling
+Step 4️⃣ Build Steps → Execute Shell
+Add the following shell script:
+
+#!/bin/bash
+set -e
+
+echo "Building Docker image"
+docker build -t nginx-frontend:latest .
+
+echo "Stopping old container if any"
+docker stop nginx-frontend-app || true
+docker rm nginx-frontend-app || true
+
+echo "Running new container on port 9090"
+docker run -d --name nginx-frontend-app -p 9090:80 nginx-frontend:latest
+
+echo "Container status"
+docker ps -a
+
+echo "Last 20 log lines"
+docker logs --tail=20 nginx-frontend-app
+
+Step 5️⃣ Save & Build
+
+Click Save
+Click Build Now
+Monitor:
+Console Output
+Logs
+
+Success / Failure status
+
+🔔 GitHub Webhook Configuration
+In GitHub Repository:
+Settings → Webhooks → Add webhook
+Payload URL:
+http://<EC2-PUBLIC-IP>:8080/github-webhook/
+
+Example:
+http://3.109.187.XXX:8080/github-webhook/
+
+Content Type:
+application/json
+
+Events:
+Just the push event
+🔄 End-to-End CI/CD Flow
+Developer commits code
+        ↓
+GitHub Repository
+        ↓ (Webhook)
+Jenkins Freestyle Job
+        ↓
+Docker Build
+        ↓
+Docker Deploy
+        ↓
+Application Running on EC2 (Port 9090)
+
+
+📊 Jenkins Dashboard Capabilities
+View job status
+Console logs
+Build history
+Failure root cause
+Success confirmation
+📩 Notifications (Optional Enhancements)
+Email notifications for:
+Build success
+Build failure
+Slack / Teams integration
+Advanced reporting with plugins
+✅ What This Setup Demonstrates
+✔ Jenkins Freestyle CI/CD
+✔ Docker-based deployment
+✔ GitHub webhook automation
+✔ Real-time build logs
+✔ Basic DevOps workflow
+
+enable all github plugin and add webhook triggers 
+
+
+# session 43 28/10/2025 **********************************************************************************************
+project - satyam-git notes-app
+
