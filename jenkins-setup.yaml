@@ -1,4 +1,4 @@
-# session 41 25/10/2025
+# session 41 25/10/2025(nginx-frontend-app)
 🔁 CI/CD Automation Tools Overview
 Popular CI/CD tools:
 GitLab CI/CD
@@ -175,7 +175,7 @@ Paste the initial admin password and complete setup.
 
 
 
-# session 42 28/10/2025
+# session 42 28/10/2025()
 🔧 EC2 Preparation – Install Docker
 Prepare the EC2 instance by installing Docker so Jenkins can build and run containers.
 
@@ -338,7 +338,7 @@ Advanced reporting with plugins
 enable all github plugin and add webhook triggers 
 
 
-# session 43 28/10/2025 **********************************************************************************************
+# session 43 28/10/2025 (notes-app-pipeline)**********************************************************************************************
 project - satyam-git notes-app
 
 🚀 Jenkins Pipeline Using Groovy (Declarative Pipeline)
@@ -442,6 +442,85 @@ pipeline {
     }
 }
 
+
+I have multiple app in this git repo then the code is different
+pipeline {
+    agent any
+
+    environment {
+        APP_DIR        = "notes-app"
+        IMAGE_NAME     = "notes-app:latest"
+        CONTAINER_NAME = "notes-app"
+        PORT           = "9092"
+        HOST           = "3.109.187.88"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/anil2211/jenkins-setup-guide.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir("${APP_DIR}") {
+                    sh '''
+                        echo "===== Building Docker Image ====="
+                        docker build -t $IMAGE_NAME .
+                    '''
+                }
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                sh '''
+                    echo "===== Stopping Old Container ====="
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                sh '''
+                    echo "===== Running New Container ====="
+                    docker run -d \
+                      --name $CONTAINER_NAME \
+                      -p $PORT:80 \
+                      $IMAGE_NAME
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    echo "===== Verifying Application ====="
+                    sleep 10
+                    curl -s http://$HOST:$PORT | head -n 20
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Notes app deployed successfully!"
+            echo "🌐 Access URL: http://$HOST:$PORT"
+        }
+        failure {
+            echo "❌ Build or deployment failed. Check Jenkins logs."
+        }
+    }
+}
+
+
+
 🔍 Explanation of Pipeline Sections
 agent any
 Pipeline can run on any available Jenkins agent
@@ -492,3 +571,475 @@ Monitor:
 Stage-wise execution
 Console output
 Success / failure status
+
+
+# session 44 
+jenkins credential 
+use the docker hub
+
+add credentials into jenkins
+
+open docker hub -accounts-personal  access tokens-generate new token
+
+
+now open jenkins- credential-global credentials-add credentilas
+new credential-kind-username and password
+username
+password
+id 
+Description
+
+pipeline {
+    agent any
+
+    environment {
+        APP_DIR        = "notes-app"
+        IMAGE_NAME     = "notes-app:latest"
+        CONTAINER_NAME = "notes-app"
+        PORT           = "9092"
+        HOST           = "3.109.187.88"
+        DOCKER_USER    = "username"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/anil2211/jenkins-setup-guide.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir("${APP_DIR}") {
+                    sh '''
+                        echo "===== Building Docker Image ====="
+                        docker build -t $IMAGE_NAME .
+                    '''
+                }
+            }
+        }
+        stage('push to docker hub'){
+        steps{
+                  withCredentials([usernamePassword(
+        
+                        credentialsId: 'Docker_hub_id_pwd',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                        )])    {
+                            sh ''' 
+                            echo "==========logging in to docker hub "
+                            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                            '''
+                            echo "====tagging image======"
+                            docker tag $IMAGE_NAME $DOCKER_USER/$IMAGE_NAME
+                            echo "=====pushing image to docker hub=====" 
+                            docker push $DOCKER_USER/$IMAGE_NAME
+                            ''' 
+                        }               
+                        }
+                           }
+        stage('Stop Old Container') {
+            steps {
+                sh '''
+                    echo "===== Stopping Old Container ====="
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                sh '''
+                    echo "===== Running New Container ====="
+                    docker run -d \
+                      --name $CONTAINER_NAME \
+                      -p $PORT:80 \
+                      $IMAGE_NAME
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    echo "===== Verifying Application ====="
+                    sleep 10
+                    curl -s http://$HOST:$PORT | head -n 20
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Notes app deployed successfully!"
+            echo "🌐 Access URL: http://$HOST:$PORT"
+        }
+        failure {
+            echo "❌ Build or deployment failed. Check Jenkins logs."
+        }
+    }
+}
+
+
+
+# session 45 
+jenkins =>master and slave 
+2 instances 
+launch insatance on aws =>jenkins agents
+launch insatnce master-
+install jenkins docker java on both instance
+on slave instl docker java
+
+on slave mkdir -p /home/ubuntu/jenkins
+ls
+
+on master
+ls -a
+cd .
+cd .ssh/
+ls
+ssh-keygen
+ls
+cat id_ed255519.pub
+copy that key
+
+on slave node
+ls -a
+cd .
+cd .ssh/
+ls
+sudo vim authrosed-key
+paste the key copy from the master
+cat authorised-key
+
+sudo usermod -aG docker ubuntu
+newgrp docker
+
+
+no on master node open jenkins on localhost
+new-node=>jenkin-agent
+permanent agent
+name ,description,number of executors-1,remote root directory-paste the paste of slave
+/home/ubuntu/jenkins
+labels-dev
+
+launch method-launch agents via ssh
+host-paste ip of slave instance
+
+credentials-add credentials
+kind-SSH username with private key
+id=>dev-agent-key
+description=>private key for dev
+username =>username
+
+private key=>copy the private key from the master node
+
+save it
+
+same java version and docker on master and slave node
+
+in side jenkins
+on master node
+
+****************************************************************************************
+Jenkins Master–Agent (Slave) Setup on AWS (Step-by-Step)
+Architecture Overview
+Component	Purpose
+Jenkins Master	Controls pipelines, scheduling, UI
+Jenkins Agent (Slave)	Executes jobs (Docker build, push, run)
+AWS EC2	Infrastructure
+Docker	Application containerization
+SSH	Secure Master → Agent communication
+
+Step 1: Launch AWS EC2 Instances
+1️⃣ Create 2 EC2 instances
+OS: Ubuntu 22.04
+Instance Type: t2.medium (recommended)
+Security Group:
+Port 22 → SSH
+Port 8080 → Jenkins UI
+Port 9092 → Application access
+
+Instance	Purpose
+Instance 1	Jenkins Master
+Instance 2	Jenkins Agent (Slave)
+
+Step 2: Install Required Software
+
+🔹 On Master & Agent
+
+sudo apt update -y
+sudo apt install -y openjdk-17-jdk docker.io
+
+Enable Docker:
+sudo systemctl start docker
+sudo systemctl enable docker
+
+Add user to Docker group:
+sudo usermod -aG docker ubuntu
+newgrp docker
+
+⚠️ Important:
+Java & Docker versions must be same on master and agent to avoid pipeline failures.
+
+Step 3: Install Jenkins on Master Node
+
+curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee \
+/usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+https://pkg.jenkins.io/debian binary/ | sudo tee \
+/etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update
+sudo apt install -y jenkins
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+
+Access Jenkins:
+http://<MASTER_PUBLIC_IP>:8080
+
+Step 4: Prepare Jenkins Agent (Slave)
+
+Create Jenkins working directory
+mkdir -p /home/ubuntu/jenkins
+ls /home/ubuntu
+
+Step 5: Configure SSH Key-Based Authentication
+
+🔹 On Master
+
+cd ~/.ssh
+ssh-keygen
+ls
+cat id_ed25519.pub
+📋 Copy the public key
+🔹 On Agent
+cd ~/.ssh
+sudo vim authorized_keys
+
+Paste Master’s public key, then:
+cat authorized_keys
+
+Step 6: Add Jenkins Agent in Jenkins UI
+
+Jenkins Dashboard → Manage Jenkins
+➡ Manage Nodes and Clouds
+➡ New Node
+
+Node Configuration
+Field	Value
+Node Name	jenkins-agent
+Type	Permanent Agent
+Executors	1
+Remote Root Dir	/home/ubuntu/jenkins
+Labels	dev
+
+Launch Method: Launch agent via SSH
+Field	Value
+Host	<AGENT_PRIVATE_IP>
+Credentials	Add New
+Kind	SSH Username with Private Key
+ID	dev-agent-key
+Username	ubuntu
+Private Key	Paste Master’s private key
+
+✅ Save → Jenkins connects agent automatically
+
+Step 7: Verify Agent Connection
+Node status should be Connected
+Logs should show:
+Agent successfully connected
+
+Jenkins Declarative Pipeline (Corrected & Improved)
+🔥 Fixed issues:
+Correct agent syntax
+Fixed Docker login variable mismatch
+Proper shell quoting
+Correct Docker Hub push flow
+
+jenkinsfile
+pipeline {
+    agent { label 'dev' }
+
+    environment {
+        APP_DIR        = "notes-app"
+        IMAGE_NAME     = "notes-app"
+        IMAGE_TAG      = "latest"
+        CONTAINER_NAME = "notes-app"
+        PORT           = "9092"
+        HOST           = "3.109.187.88"
+        DOCKER_USER    = "your_dockerhub_username"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/anil2211/jenkins-setup-guide.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                dir("${APP_DIR}") {
+                    sh '''
+                        echo "===== Building Docker Image ====="
+                        docker build -t $IMAGE_NAME:$IMAGE_TAG .
+                    '''
+                }
+            }
+        }
+
+        stage('Push Image to Docker Hub') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'Docker_hub_id_pwd',
+                        usernameVariable: 'DOCKER_USERNAME',
+                        passwordVariable: 'DOCKER_PASSWORD'
+                    )
+                ]) {
+                    sh '''
+                        echo "===== Logging into Docker Hub ====="
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+
+                        echo "===== Tagging Image ====="
+                        docker tag $IMAGE_NAME:$IMAGE_TAG $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
+
+                        echo "===== Pushing Image ====="
+                        docker push $DOCKER_USERNAME/$IMAGE_NAME:$IMAGE_TAG
+                    '''
+                }
+            }
+        }
+
+        stage('Stop Old Container') {
+            steps {
+                sh '''
+                    docker stop $CONTAINER_NAME || true
+                    docker rm $CONTAINER_NAME || true
+                '''
+            }
+        }
+
+        stage('Run New Container') {
+            steps {
+                sh '''
+                    docker run -d \
+                    --name $CONTAINER_NAME \
+                    -p $PORT:80 \
+                    $IMAGE_NAME:$IMAGE_TAG
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    sleep 10
+                    curl -s http://$HOST:$PORT | head -n 20
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Notes app deployed successfully!"
+            echo "🌐 Access URL: http://$HOST:$PORT"
+        }
+        failure {
+            echo "❌ Deployment failed. Check logs."
+        }
+    }
+}
+
+Interview Explanation (How to Answer)
+
+Q: Why Master–Agent architecture?
+✔ Load distribution
+✔ Secure execution
+✔ Scalability
+✔ Resource isolation
+
+Q: Why SSH-based agent?
+✔ Simple
+✔ Secure
+✔ Widely used in production
+
+Q: Why labels?
+✔ Control job execution on specific nodes
+
+Final Result
+✔ Jenkins Master manages pipelines
+✔ Agent builds & deploys Docker containers
+✔ Docker image pushed to Docker Hub
+✔ Application deployed automatically
+
+
+*******session 46*********************************************************************
+email notificationa
+plugin email extensions,mailer plugin
+open gmail->accounts->security->app password
+open jenkins-> system->extended email notification
+SMTP server-smtp.gmail.com
+port 465
+add credential-username with password
+username-email id
+password-copy from the gmail,the password which we create for the app
+save
+
+email-notifications
+smtp- smtp.gmail.com
+use smtp authentification
+username-email and password
+
+test it
+
+save it 
+now run pipeline
+
+
+script 
+
+    post {
+        success {
+            echo "✅ Notes app deployed successfully!"
+            echo "🌐 Access URL: http://$HOST:$PORT"
+            emailext(
+            subject:"build successful",
+            body: "congrtas build was successful"
+            to: "email-id"
+            )
+        }
+        failure {
+            echo "❌ Deployment failed. Check logs."
+            emailext(
+            subject:"build failed",
+            body: "congrtas build was failed"
+            to: "email-id"
+            )
+        }
+
+
+
+add webhook on github with the master node ip
+
+
+plugin
+role based autorization strategy
+
+user->create user
+
+security-authrization->matrix nbased security
+add user
+
+
+***************************8session 47**********************
+gitlab
