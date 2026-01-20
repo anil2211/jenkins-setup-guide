@@ -1,0 +1,28 @@
+cd multi-tier-app
+ls
+docker-compose.yml frontend backend db-init
+
+Build & Start All Services
+docker compose up -d --build
+
+docker ps
+
+
+Verify MySQL Initialization
+docker logs notes-db
+
+http://localhost:8080
+
+
+Useful Debug Commands
+View logs
+docker logs -f notes-backend
+docker logs -f notes-frontend
+docker logs -f notes-db
+
+Restart services
+docker compose restart
+
+
+docker compose down
+
