@@ -1,0 +1,115 @@
+
+session 86
+
+ecommerce app
+docker
+k8s
+argocd,jenkins,
+ansible,traform,promethus,graphana,argocd manifest from github
+
+star method-
+
+delta 360 services pvtltd-noida
+designation is-devops engineer
+1st duration-  aug 2025-present(6 months)
+2nd duration - jan 2025 -present(1 year)
+
+min 6 month to 1.6 months
+
+client background-Australia based Ecommerce company
+The client is an australia based mid- scale e commerce plateform serving multiple product categories with high seasonal traffic.The plateform required a scallable secure and automated deployment architecture to support frequent relaese,his high availability and secure payment workflows
+-
+s-situation
+t-task
+a-actions
+r-results
+
+Infrastruture and cloud Automation
+
+situation:the client lacked standardized cloud infrastructures and deplyments were inconsistent across enviromnets
+
+task:
+design and provison a scalable and repetble aws infrastructutre for the ecommerce plateform
+
+action:
+1. used terafor to provision aws infrastructure including EKS,ec2(jenkins and bastion),Iam roles and networking
+2. implemented infrastructure as code to ensure consistency across environment
+3. configured aws cli and kubeconfig access securely via bastion host 
+
+results:
+ 1. reduced infrasture setup time from days to under an hour
+ 2  achieved reproducedble and version controlled infrasture
+ 3. improved environment relaiblilty and audaditabilty
+ 
+
+ci pipeline impleented(jenkins)
+
+situations: Application build and deplyments were manual,error-prone and not version-controlled.
+
+Task:Implement Ci pipeline to automate build,test and container image creation.
+action:
+1. we have setup jenkins on ec2 with required plugins and global credentials.
+2. designed jenkins pipeline using jenkins file and shared libraries
+3. automated docker image build and push to docker hub with version taging
+4. integerated github webhooks for automatic pipeline triggering.
+
+results:
+01. enable fully automated CI process.
+02. reused deployment failures caused by manual steps.
+03. improved release frequency and consistency
+
+Kubernetes and applications deployment
+situation:the application needed a scalable runtime environment with proper service 
+discovery and configuration management.
+Task:
+deploy and manage the application on kubernetes with production ready configurations.
+
+Actions:
+1. deployment application components on AWS EKS.
+2.  configured kubernetes deployments,services,configmaps and secrets
+3 . managed mongodb as a strateful sets with persistent storage.
+4. ensured smoth communications between application and database services
+
+results:
+1. achive high availability and scalabity
+2. stable application runtime and minimal downtime
+
+****************************************************************************************************
+resume-arial,font 10 no spacing
+name
+devops engineer
+india
+email-id,phone no-999999
+linkedin,github
+
+Professional summary
+Devops engineer with hands on 1 year of experience in designing,deplyng,and maintaing cloud native ecommerce applicationfor internatioanl client.Experience AWS ,kubernetes(EKS),jenkins,CICD automations,infrastructure as code,and gitops practices.Worked in a service based delivery model,collborating with development teams to ensure scalable,secure and reliable production enviromnets.
+
+Technical skills
+cloud: AWS(ec2,eks,vpc,iam,s3,cloudwatch,rds)
+containerization and orchastrion:dcker ,k8s
+ci/cd: jenkins,gitlab,github webhook
+gitops and CD: argo CD
+infrastructure ans code: terraform
+configuration management: Ansible
+Networking and security: Nginx Ingress,cert-manager,HTTPs,DNS configurations
+database:MongoDb(statefulset)
+os and tools : linux,git,aws clie,kubectl
+
+Professiona Experience
+Delta 360 services pvt ltd Noida dec 2024 -present
+Devops engineer
+
+worked on as Australia based ecommerce client project where Delta 360 delivered application
+deployment,cloud infrastructure,CI/CD automation,kubernetes orchestrayion and ongoing production maintenace.
+
+Key Responsiblities and achivements
+1. designed and automated AWS infrastrue using terraform,provisiong  EKS clusters,EC2 instances(jenkins and baston host),IAM roles and networking components
+2. implemented CI pipelines using jenkins to automate applications build,docker image creationand versioned images pushes to docker hub.
+3. Integrated Github webhooks to enable automated applications build triggers for continous integrations
+4 . deployed and managed applications workloads on AWS EKS using kubernetes deployments, Services,configmap and secrets
+5. 
+6.
+
+Educations
+MCA 2018

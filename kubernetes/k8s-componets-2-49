@@ -1,0 +1,152 @@
+session 50 
+
+Kubernetes Components
+CONTROL PLANE (Master Node / Brain)
+The control plane makes decisions and manages the cluster state.
+It does not run application containers.
+1️⃣ API Server
+Definition
+The API Server is the central entry point of the Kubernetes cluster that handles all requests and communication.
+Explanation
+All commands (kubectl, CI/CD, UI, controllers) go through API Server
+Validates requests
+Updates or reads cluster state from etcd
+Acts as a hub between all components
+
+📌 Key Point
+If API Server is down → cluster is unusable
+
+2️⃣ Scheduler
+Definition
+The Scheduler decides which worker node a Pod should run on.
+Explanation
+Watches for newly created Pods with no assigned node
+Evaluates:
+CPU & memory availability
+Node health
+Constraints & policies
+Assigns Pod to the best node
+📌 Key Point
+Scheduler does placement, not execution
+
+3️⃣ Controller Manager
+Definition
+The Controller Manager ensures the desired state matches the actual state of the cluster.
+Explanation
+Continuously monitors cluster
+If something breaks → fixes it automatically
+Examples:
+Pod dies → new Pod created
+Node fails → Pods rescheduled
+Replicas < desired → create more
+📌 Key Point
+This is where self-healing comes from
+
+4️⃣ etcd
+Definition
+etcd is a distributed key-value database that stores the entire cluster state.
+Explanation
+Stores:
+Nodes
+Pods
+Secrets
+ConfigMaps
+Desired state
+Highly consistent & reliable
+Single source of truth
+📌 Key Point
+If etcd data is lost → cluster state is lost
+
+WORKER NODE (Execution Layer)
+Worker nodes run application workloads.
+5️⃣ kubelet
+Definition
+The kubelet is a node-level agent that executes instructions from the control plane.
+Explanation
+Communicates with API Server
+Ensures containers described in Pod spec are running
+Monitors Pod & container health
+Reports node status back to control plane
+✔ Acts as:
+Agent
+Executor of the brain
+Caretaker of the node
+📌 Key Point
+kubelet does NOT decide — it executes
+
+6️⃣ kube-proxy (Service Proxy)
+Definition
+kube-proxy manages network communication and basic load balancing for Services.
+Explanation
+Runs on every worker node
+Handles:
+Pod-to-Pod communication
+Service-to-Pod routing
+Uses iptables / IPVS
+Provides stable access to Pods
+📌 Key Point
+kube-proxy enables service-level load balancing, not application LB
+
+7️⃣ Container Runtime
+Definition
+The container runtime is the software that actually runs containers.
+Explanation
+Examples:
+Docker
+containerd
+CRI-O
+Pulls images
+Creates containers
+Starts and stops containers
+📌 Key Point
+Kubernetes does not run containers itself
+It instructs the container runtime
+
+
+CLIENT TOOL (NOT PART OF NODE)
+
+8️⃣ kubectl (Corrected)
+Definition
+kubectl is a command-line client tool used to interact with the Kubernetes cluster.
+Explanation
+Sends requests to API Server
+Can be run from:
+Laptop
+CI/CD server
+Bastion host
+❌ Not part of master or worker
+✔ Only communicates through API Server
+📌 Key Point
+kubectl = CLI interface, NOT a cluster component
+
+NETWORKING
+9️⃣ CNI (Container Network Interface)
+Definition
+CNI is a networking plugin framework that provides network connectivity to Pods.
+Explanation
+Ensures:
+Every Pod gets a unique IP
+Pod-to-Pod communication across nodes
+Examples:
+Calico
+Flannel
+Weave
+Installed by default in managed clusters (EKS, GKE, AKS)
+📌 Key Point
+Without CNI → Pods cannot communicate
+
+
+
+kubectl
+   ↓
+API Server
+   ↓
+Scheduler → Node Selection
+Controller Manager → State Reconciliation
+   ↓
+etcd (Cluster Memory)
+   ↓
+kubelet → container runtime → containers
+   ↓
+kube-proxy + CNI → networking
+

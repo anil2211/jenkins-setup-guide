@@ -1,0 +1,120 @@
+session 88 resume formate
+session 89 mock interview
+
+screening round-
+tell me something about yourself
+name experience
+
+first technical round
+1. you working as devops cloud support ,you must 
+how to check cpu and disk usage linux
+2. what steps you will take if app is not responsibg on server
+3. difference between process and service
+4. how do you analyzie logs in linux
+
+
+self introduction
+self confidence and energetic
+
+thankuo so much giveing this oppurnity
+I am anil choudhary from indore
+I am devops engineer with hands on experience around 1 year working on production  grade application for australian based ecommerce client through delta 360 services.
+my primary reposibilty has been to automate build and deploy processes,manage
+cloud infrasture on aws and support containersired application running on k8s.
+I worked extensivly with jenkins for CICD,docker for containrization and
+teraform for the infrastructure provisioning.
+I am also invlved in monitoring and  troubleshoot production issues using prmethus graphana and i work closely with developemtn to ensure smoth and reliable releases.
+overall my focus has been on improving deployment relaibility,reducing manual effort and mainting stable production enviroment while continously learning devops best practices.
+that all about me.
+thank you.
+
+2. tell me your roles and responsibilty 
+   my key resposiblities include desidgning and maintainng CICD pipelines using jenkins and github actions and provisiong AWS infrastructure with treform and deploying and managing application on kubenetes using EKS, i configured nginx ,ingress and https with ssh manager stateless and stateful workload CU includng  DATABASE and support gitops based deployments using argo CD.
+   Additionany i monitor production system using promethus and graphana,ensure stable and relaible applications releases
+
+   final ans-production ecommerce application deployed on AWS for an international client.
+   build and maintain ci cd pipeline using jenkins to automate build ,test and deployment workflows,containerize application components using docker and 
+   deploy them on using kubernetes EKS managed ,manage kubernetes resources such as deployment,services,configmaps,secrets .provided and managed aws infrastructure using terraform following infrastructure as code best practices and infrastrucres as  code practices, worked with core aws services including EC2 ,vpc,IAM,load balance and s3,implemented monitoring and alerting  using promethus and graphana track application and  health.
+   assitant in prodduction issue like pod faliure and CICD errors 
+performance issue.
+
+session 90
+1. walk me through your background and current roles and resposibilty
+at delta 360 services
+2.  what kind of client or project you have beeen working on
+3.  what environment you have supported ,are working working on production as well or just deelopment and staging.
+4. what was your role in the project life cycle?
+5. which parts were handled by developers and which parts were managed by devops teams
+6. what tools you use most frequently and why you have used them> if you are from starting to end in this project
+7. why you used argo cd,what was objective to use argocd in your project,how you have implemented.what you have achive after using it.
+8. what does production support in your role,as you mention production support in your project
+ans-ensuring that live application running in the production environment remain stable available secure and they perform well,minimize the downtime and business impact
+9. what is devops according to you
+10 why you choose devops as career
+
+technical in depth
+11. how do check cpu ,memory and disk usage in a linux server
+12. your application is not responding,what steps you will follow to troubleshoot and try to be structured with your approach
+13. how will you check network port or command to use it
+14. diff b/w process(node,java,python or app) and service(docker jenkind systemctl)
+  process is a runing instance of a program , service is managed process running in the background
+
+15. how do you analyze applications logs?application logs in linux
+16. how you check error?
+17. in what case you use awk or set?
+18. how you check which  port service is listing on?
+frre -h ,htop and  btop
+19. if you are not using any argo cd or kubernetes ,it is only monolthic server ,how you troubleshoot it
+
+session 91 
+
+20. there is application running but not reponding to user ,what will be your troubleshoting approach
+21. how you identify which process is consuming the high cpu
+ps aux command,free -h,htop
+22. how do you analyze applications logs in linux?
+21. why we use journel ctl command(we can check complete logs details ,complete logs of systemctl services using it)
+22. what permission are required for an applications to write logs  in directory
+(read write permission to a file)
+23. how do you check open ports and listening services on a server?
+net state and ss and tail net 
+24. can you explain CI /CD pipeline which you have worked on 
+25. can you tell me which tools or area in which you are more confidently?
+26. you wrote live project ,what kind of the reponsiblity you have there
+27. what commands do you normally use to check the health of a linux server?
+28. how do you check average load
+29. how is the system service different then normal linux process?
+30. where you usually check when application fails on linux
+application logs sytem logs,service logs
+31. explain how code moves from github to production in your project?
+first the code commits and push happens in github,then CI pipelines triggers,
+when the code is pushed or merged CI pipeline is triggered, and then github actions or jenkins start the inetgetartion
+32. what actions cause your jenkins pipelines to start automaticaly
+33. if pipeline breaks during the deployments how do you respond?how you trouble shoot it?
+33. what problems does docker solve in application deployment?
+
+sessin 92
+
+34. how do you cordinated with the developers during the deployments in your current role
+35. which tools or area do you feel confident handling independently
+36. you have live production there wht kind of responsiblity did you have there
+37. what linux level issues can cause high CPU or memory usage.(cron jobs are background task which can be heavy scipt running)
+38. can you explain how code moves from the github to production
+39. how do you logically divide a pipeline into stages
+40. how do you manage docker image versions during your deployments
+41. what problems does docker solve in deployments statement
+42. how does a docker image differ from a running container
+43. docker image and running container difference
+44. what are the most important instruction you write in docker file?
+45. how do ypu keeps docker images light weight and production ready?(distroles and multi stage docker file)
+46. can you describe the conatiner related issues you faced and how do you fixed it?
+47. can you describr your project which yu mention
+48. what motivated you to focus on devops and aws?
+49. what devops role are you targeeting next?
+50. where do you usually  look first when an application failed on linux?
+51. how does kubernetes help avoid downtime?
+52. what advantages did EKS give you over running container directly on ec2
+53. why was terraform chosen for the provisioning infrastructure
+54. how do you stored and protect terafrom state files.
+55. what role does graphana play in observability.
+56. what metrics tell you that an pplication might be unhealthy
+57. if kubernetes pods keep restarting,how would you debug this issue
