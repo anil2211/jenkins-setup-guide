@@ -1,24 +1,19 @@
 1. How do you check CPU, memory, and disk usage in Linux?
 CPU
-
 top, htop, btop
-mpstat
 ps aux --sort=-%cpu
 
 Memory
-
 free -h
 vmstat
 top
 
 Disk
-
 df -h (disk space)
 du -sh /path (directory usage)
 lsblk
 
 2. Application is not responding on a server. What steps will you take?
-Structured Troubleshooting Approach:
 Check server health
 CPU, memory, disk (top, free -h, df -h)
 Check application process

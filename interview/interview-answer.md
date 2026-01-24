@@ -1,58 +1,60 @@
 1. Tell me something about yourself (Self-Introduction)
-Thank you for giving me this opportunity.
-My name is Anil Choudhary, and I am from Indore.
-I am a DevOps Engineer with around one year of hands-on experience working on a production-grade Australian e-commerce application through Delta 360 Services.
+ 
+   Thank you for giving me this opportunity.
+   My name is Anil Choudhary, and I am from Indore.
+   I am a DevOps Engineer with around one year of hands-on experience working on a production-grade Australian e-commerce application through Delta 360 Services.
 
-My primary responsibilities include automating CI/CD pipelines, managing AWS infrastructure, and supporting containerized applications running on Kubernetes.
-I have worked extensively with Jenkins, Docker, Terraform, Kubernetes (EKS), Prometheus, Grafana, and Argo CD.
+   My primary responsibilities include automating CI/CD pipelines, managing AWS infrastructure, and supporting containerized applications running on Kubernetes.
+   I have worked extensively with Jenkins, Docker, Terraform, Kubernetes (EKS), Prometheus, Grafana, and Argo CD.
 
-I am actively involved in production monitoring and troubleshooting, and I work closely with development teams to ensure smooth, reliable, and zero-downtime deployments.
-My focus has always been on improving reliability, reducing manual effort, and maintaining stable production environments while continuously learning DevOps best practices.
+  I am actively involved in production monitoring and troubleshooting, and I work closely with development teams to ensure smooth, reliable, and minimal-downtime deployments.
+  My focus has always been on improving reliability, reducing manual effort, and maintaining stable production environments while continuously learning DevOps best practices.
 
 2. What are your roles and responsibilities in your project?
-My key responsibilities include designing and maintaining CI/CD pipelines using Jenkins and GitHub Actions, provisioning AWS infrastructure using Terraform, and deploying applications on Kubernetes using EKS.
-I configured NGINX ingress, HTTPS, and managed both stateless and stateful workloads, including databases.
-I also implemented GitOps-based deployments using Argo CD and monitored production systems using Prometheus and Grafana.
-Additionally, I supported production issues such as pod failures, pipeline failures, and performance problems.
+  My key responsibilities include designing and maintaining CI/CD pipelines using Jenkins and GitHub Actions, provisioning AWS infrastructure using Terraform, and deploying applications on Kubernetes using EKS.
+  I configured NGINX ingress, HTTPS, and managed both stateless and stateful workloads, including databases.
+  I also implemented GitOps-based deployments using Argo CD and monitored production systems using Prometheus and Grafana.
+  Additionally, I supported production issues such as pod failures, pipeline failures, and performance problems.
 
-3. Walk me through your background and current role at Delta 360 Services
-I am currently working as a DevOps Engineer at Delta 360 Services, where I support an Australian e-commerce client.
-My role involves CI/CD automation, infrastructure provisioning, Kubernetes management, monitoring, and production support.
+3. Walk me through your background and current role at Delta 360 Services.
+
+   I have recently worked  as a DevOps Engineer at Delta 360 Services, where I support an Australian e-commerce client.
+   My role involves CI/CD automation, infrastructure provisioning, Kubernetes management, monitoring, and production support.
 
 4. What kind of client or project have you been working on?
-I have been working on a production-grade international e-commerce platform hosted on AWS.
-The project requires high availability, scalability, security, and minimal downtime.
+   I have been working on a production-grade international e-commerce platform hosted on AWS.
+   The project requires high availability, scalability, security, and minimal downtime.
 
 5. What environments have you supported?
-I have supported development, staging, and production environments.
-I am actively involved in production support as well.
+  I have supported development, staging, and production environments.
+  I am actively involved in production support as well.
 
 6. What was your role in the project lifecycle?
-My role covered infrastructure provisioning, CI/CD automation, deployment, monitoring, troubleshooting, and continuous improvement throughout the project lifecycle.
+   My  role covered infrastructure provisioning, CI/CD automation, deployment, monitoring, troubleshooting, and continuous improvement throughout the project lifecycle.
 
-7. How do you analyze logs in Linux?
-I usually start with tail -f to monitor logs in real time.
-For detailed analysis, I use less, grep, awk, and sed to filter specific errors or patterns.
-For system and service logs, I rely on journalctl, which gives complete logs of systemd services.
+7. How do you analyze logs in Linux? 
+  I usually start with tail -f to monitor logs in real time.
+   For detailed analysis, I use less, grep, awk, and sed to filter specific errors or patterns.
+   For system and service logs, I rely on journalctl, which gives complete logs of systemd services.
 
 8. What is the difference between a process and a service?
-A process is a running instance of a program, like a Java or Python application started manually or automatically.
-A service is a managed background process controlled by the system, usually using systemctl.
-Services are designed to start at boot, restart automatically, and run continuously, whereas normal processes may stop once the session ends.
+   A process is a running instance of a program, like a Java or Python application started manually or automatically.
+   A service is a managed background process controlled by the system, usually using systemctl.
+   Services are designed to start at boot, restart automatically, and run continuously, whereas normal processes may stop once the session ends.
 
 9. What steps will you take if an application is not responding on a server?
-First, I check system resources like CPU, memory, and disk to ensure the server is healthy.
-Next, I verify whether the application process or service is running using ps or systemctl status.
-Then, I analyze application and service logs to identify errors.
-I also check network connectivity and whether the required port is listening.
-If needed, I restart the service and monitor it closely.
-Finally, I coordinate with developers if it’s an application-level issue.
+  First, I check system resources like CPU, memory, and disk to ensure the server is healthy.
+  Next, I verify whether the application process or service is running using ps or systemctl status.
+  Then, I analyze application and service logs to identify errors.
+  I also check network connectivity and whether the required port is listening.
+  If needed, I restart the service and monitor it closely.
+  Finally, I coordinate with developers if it’s an application-level issue.
 
 10. As a DevOps Cloud Support Engineer, how do you check CPU and disk usage in Linux?
-As a DevOps support engineer, the first thing I check is system health.
-For CPU usage, I usually use commands like top, htop, or ps aux --sort=-%cpu to identify high CPU-consuming processes.
-For disk usage, I use df -h to check disk space availability and du -sh to identify directories consuming more space.
-These commands help me quickly understand whether system resource issues are affecting the application.
+  As a DevOps support engineer, the first thing I check is system health.
+  For CPU usage, I usually use commands like top, htop, or ps aux --sort=-%cpu to identify high CPU-consuming processes.
+  For disk usage, I use df -h to check disk space availability and du -sh to identify directories consuming more space.
+  These commands help me quickly understand whether system resource issues are affecting the application.
 
 11. What parts were handled by developers vs DevOps?
 .
@@ -79,15 +81,24 @@ DevOps plays a critical role in application reliability and scalability, and it 
 
 17. How do you check network ports?
 I use ss -tulnp, netstat -tulnp, or lsof -i to check open ports and listening services.
+ss-itulnp(socket statistics,tcp,udp,listening ports only,show port number,processname and PID),Quick port check
+lsof- lists which process is using which network port. Best for conflicts
+kill -9 <PID>
 
 18. How do you check errors?
 I check application logs, system logs, service logs, and monitoring alerts to identify errors.
 
 19. When do you use awk or sed?
 I use awk and sed mainly for log analysis, filtering specific fields, and processing large log files efficiently.
+awk=>	Data extraction, reporting, column-based processing
+Use awk when you need to work with fields/columns, perform logic, or generate reports.
+
+sed=>	Search, replace, edit text (line-based editing)
+Use sed when you need to edit text, replace strings, or modify files line by line.
 
 20. How do you troubleshoot a monolithic server (no Kubernetes)?
 I check system resources, application processes, logs, service status, network ports, and database connectivity, then restart services if required.
+
 
 21. How do you identify high CPU-consuming processes?
 I use top, htop, and ps aux --sort=-%cpu to identify processes consuming high CPU.
@@ -110,6 +121,17 @@ I handled CI/CD pipelines, deployments, monitoring, incident response, troublesh
 
 27. What commands do you use to check Linux server health?
 I use top, htop, free -h, df -h, uptime, and vmstat.
+
+Check CPU usage & load-top,Check load average-uptime
+top and uptime
+
+Check memory usage-free -h
+Check memory usage in detail-vmstat 1 5
+free -h, ymstate 1 5
+
+Disk usage=>df -h
+Directory-level usage =>du -sh /var/log/*
+df -h, du -sh /var/log/*
 
 28. How do you check average load?
 I use uptime or top to check the system load average.
@@ -189,3 +211,12 @@ High latency, error rates, CPU/memory spikes, pod restarts, and failed health ch
 
 53. Pods keep restarting – how do you debug?
 I use kubectl describe pod, kubectl logs, check probes, resource limits, and configuration issues.
+
+
+
+“During my Python internship, 
+I worked on integrating multiple APIs for a chatbot application. 
+My role involved consuming REST APIs, 
+handling requests and responses, 
+implementing error handling, and 
+ensuring reliable communication between the chatbot and external services using Python.”

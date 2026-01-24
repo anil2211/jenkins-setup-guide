@@ -74,4 +74,63 @@ kubectl get deployment -n nginx-ns
 
 watch kubectl get pods -n nginx-ns
 
-24 se paending hai session 51
+kubectl delete pod pod-name -n nginx-ns
+
+recreate the pod automatically
+
+# architechture
+# if deployment is create then it maintain it actual state and desired state
+# api server-etcd-scdeuler-control manager(analyze)
+# kubelet-worker-node-container runtime.
+
+# kubernetes work desired state maintain
+
+kubectl scale deployment nginx-deployment --replicas=5 -n nginx-ns
+kubectl get deployment -n nginx-ns
+kubectl get pods -n nginx-
+
+kubectl scale deployment nginx-deployment --replicas=2 -n nginx-ns
+
+kubectl apply -f deployment.yml
+sudo vim deployment.yml 
+change image version
+
+then 
+kubectl apply -f deployment.yml
+
+one by one update pod or container not all one time
+user experience not affect
+
+# service.yml
+service has types 
+1. cluster ip default(inside cluster,local one but may be port forwad)
+2. node port-(service cluster can excess outside using ip and port)
+3. load balancer(public ip and port)
+4. ingress(public ip and port)
+5. external ip(public ip and port)
+
+
+sudo vim service.yml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: nginx-ns
+spec:
+  selector:
+    app: nginx
+    version: v1
+  ports:
+  - port: 80  #cluster/host
+    targetPort: 80 #container port
+    protocol: TCP
+  type: NodePort
+
+kubectl apply -f service.yml
+kubectl get all -n nginx-ns
+
+# port forwading
+sudo -E kubectl port-forward service/nginx-service -n nginx-ns 80:80 --address=0.0.0.0
+
+kubectl delete ns nginx-ns
