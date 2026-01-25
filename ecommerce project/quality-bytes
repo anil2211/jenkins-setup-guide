@@ -1,0 +1,311 @@
+github=>quality ecommerce also
+github=>shared library also on
+
+session 78
+
+trivy -scan code for the vulneribit an sceurity issue
+user data- run the install tool.sh scripts
+
+1. create a ec2 instance on aws cloud
+name QBShop
+instance type large=t2xlarge
+allow all https
+
+now connect
+clone the app
+git clone https://github.com/satyams-git/qualitybytes-Ecomerce.git
+ls
+cd Ecomerce
+
+ls
+
+sudo apt update
+install terraform
+sudo apt-get update && apt-get install -y gnupg software-properlties-common
+
+
+terraform --version
+install aws cli
+
+aws configure
+aws IAM user create user
+create access key and for the cli access
+aws configure
+
+aws s3 ls
+
+ssh-keygen -f qualibytes-key
+chmod 400 qualiibytes-key
+ls
+cd teraform 
+terraform init
+terraform validate
+terraform plan
+terraform apply --auto approve
+terraform output
+terraform state
+
+terraform destroy
+
+copy the ip and paste
+jenkins
+ip:8080
+
+--------------------
+ssh -i qualibytes-key ubuntu@ip   #for jenkins instance
+sudo systenctl status jenkins
+copy the password
+
+install plugins=>docker,docker pipeline,pipeline stage view,git
+restart jenkins
+
+and from the host
+exit
+clear
+---------------------------------------------
+aws eks --requion ap-south-1 update-kubeconfig --name qualitybytes-cluster
+kubectl get nodes
+install kubectl on the host server
+kubectl get nodes
+
+git status
+git branch -main
+git branch dev
+git checkout -b dev
+git switch dev
+git status
+-------------------------------------
+upto to now 4 instance runnning
+jenkins-automate
+qulitybyte main
+2 nodes
+1-eks cluster
+1-vpc
+
+******************************************************
+session 79
+on host system 
+
+kubectl get nodes on main server
+terraform output
+
+jenkins is also running
+in jenkins file we used the shared library which is on github
+
+creadebtals setup in jenkins
+
+credentials-global-add credentials
+username-github _username
+password-create personal access token classic github
+
+username-docker hub username
+password-docker hub password
+id-docker-hub-credentials # as per jenkins file
+
+
+system=>configure system
+global trusted pipeline libraries
+name-shared 
+defaut version -main
+
+retrival method-modern SCM
+git
+project repository
+shared library -repositories
+
+create a job
+qBshop
+pipeline
+description also 
+discrad old build
+max build 3
+github project and url
+
+pipeline for now script ,on production you can use SCM
+paste the jenkins pipeline script here
+save  apply
+
+--------------------------------------------------------
+sessoon 80
+
+docker hub images is successfully there
+on jenkins server
+
+on host server
+kubectl get nodes
+
+aws s3 ls
+
+kubectl create namespace argocd
+install argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+watch kubectl get pods -n argocd
+
+kubectl get svc -n argocd
+
+to run run or expose in node port,we use pathc ,because it is internally running
+on host server
+
+kubectl patch svc argocd-server -n argocd -p '{"spec"": {""type"": ""NodePort"}}'
+
+kubectl get svc -n argocd
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.username}' | base64 -d 
+we get password
+
+now open port 32600 in node port
+then open ip:32600 in browser
+admin and password
+
+setting->repositories->connect repo
+via http/https
+type git
+default 
+repository url
+
+add cluster
+use cli 
+install argocd cli
+use documentation to install
+
+argocd version
+
+argocd login ip:32600
+
+now we add cluster
+argocd account get-user-info
+kubectl get nodes
+aws sts get-caller-identity
+
+kubectl config get-contexts
+
+kubectl config use-context arn:aws:eks:ap-south-1:589745010854:cluster/qualitybytes-eks-cluster
+
+kubectl config current-context
+argocd cluster add arn:aws::eks:ap-south-1:589745010854:cluster/qualitybytes-eks-cluster
+
+argocd cluter list
+
+now confirmation so check through ui
+ip:32600
+inside the cluster,our cluster is created
+
+new app-qubishop
+default
+manual
+prune lastauto create namespace
+source
+dev
+path-kubernetes
+
+destination
+cluster url
+namespace
+qbshop
+
+now on termonal host
+kubectl create namespace ingress-nginx
+install helm
+curl -fsSl -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+chmod +x get_helm.sh
+./get_helm.sh
+
+helm --version
+
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install nginx-ingress-controller ingress-nginx/ingress-nginx --namespace ingress-nginx --set controller.service.type=LoadBalancer
+
+kubectl get pods -n ingress-nginx
+kubectl get svc -n ingress-nginx
+
+now again open argocd
+ip:32600
+outofsync error if due to cert manager
+
+install cert 
+helm repo add jetstack https://charts.jetstack.io
+helm install cert-manager jetstack/cert-manager --namespace cert-manager create-namespace --version v1.12.0 --set installCRDs=true
+
+kubectl get pods -n cert-manager
+
+kubectl get svc nginx-ingress-nginx-controller -n ingress-nginx -o jsonpath='{status.loadBalancer.ingress[0].hostname}'
+
+
+now everthing working upto 
+frontend is working and listening and ip of pod:30000
+
+kubectl get ns
+kubectl get pods -n qbshop
+
+kubectl get svc -n qbshop
+
+kubectl get all -n qbshop
+
+kubectl get pv
+
+kubectl get pvc -n qbshop
+
+kubectl  describe pod pod name -n qbshop
+
+kubectl logs pod name
+
+---------------------------------------------------------------
+session 81
+pod id :30000
+kubectl get ns
+kubectl get all -n ingress-nginx
+copy the external ip
+open the go daddy
+domain=>DNS+>CNAME add 
+qbshop.sriv.shop
+
+----monitoring
+helm version
+intall the promethus  using the helm
+
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+
+kubectl create namespace prometheus
+
+kubectl get ns
+now install the prometheus inside the name space
+helm install stable promethus-community/kube-prometheus-stack -n prometheus
+
+kubectl get pods -n prometheus
+
+kubectl get svc -n prometheus
+
+kubectl get all -n prometheus
+
+now prometheus and graphana to be used in as browser so use the  loadbalancer to remove from the cluster IP
+
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+it open the .yml
+change type into LoadBalancer
+
+kubectl edit svc stable-grafana -n prometheus
+it open the .yml
+change type into LoadBalancer
+
+ip:ports in the browser
+
+in grafabna need password
+kubectl get secret --namespace prometheus stable-grafana -o jsonpath='{.data.admin-password}' | base64 -d; echo
+it give the password
+
+ip:30474
+admin and password
+
+now everthing is working fine
+
+terraform destroy
+
+
+
+

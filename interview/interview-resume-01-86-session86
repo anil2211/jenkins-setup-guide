@@ -18,61 +18,68 @@ min 6 month to 1.6 months
 
 client background-Australia based Ecommerce company
 The client is an australia based mid- scale e commerce plateform serving multiple product categories with high seasonal traffic.The plateform required a scallable secure and automated deployment architecture to support frequent relaese,his high availability and secure payment workflows
--
+-------------------------------------------------------------------------------------------
+
 s-situation
 t-task
 a-actions
 r-results
 
-Infrastruture and cloud Automation
+Infrastructure & Cloud Automation (AWS)
 
-situation:the client lacked standardized cloud infrastructures and deplyments were inconsistent across enviromnets
+Situation
+The client lacked standardized cloud infrastructure, and deployments were inconsistent across environments, leading to delays and configuration drift.
 
-task:
-design and provison a scalable and repetble aws infrastructutre for the ecommerce plateform
+Task
+Design and provision a scalable, repeatable AWS infrastructure for an e-commerce platform.
 
-action:
-1. used terafor to provision aws infrastructure including EKS,ec2(jenkins and bastion),Iam roles and networking
-2. implemented infrastructure as code to ensure consistency across environment
-3. configured aws cli and kubeconfig access securely via bastion host 
+Actions
+Provisioned AWS infrastructure using Terraform, including EKS, EC2 (Jenkins & Bastion hosts), IAM roles, and VPC networking.
+Implemented Infrastructure as Code (IaC) to ensure consistency and repeatability across environments.
+Configured secure access using AWS CLI and kubeconfig via a bastion host.
 
-results:
- 1. reduced infrasture setup time from days to under an hour
- 2  achieved reproducedble and version controlled infrasture
- 3. improved environment relaiblilty and audaditabilty
- 
+Results
+Reduced infrastructure setup time from days to under one hour.
+Achieved fully reproducible, version-controlled infrastructure.
+Improved environment reliability, security, and auditability.
+CI Pipeline Implementation (Jenkins)
 
-ci pipeline impleented(jenkins)
+----------------------------------------------------------------------------------------
 
-situations: Application build and deplyments were manual,error-prone and not version-controlled.
+Situation
+Application builds and deployments were manual, error-prone, and lacked version control.
 
-Task:Implement Ci pipeline to automate build,test and container image creation.
-action:
-1. we have setup jenkins on ec2 with required plugins and global credentials.
-2. designed jenkins pipeline using jenkins file and shared libraries
-3. automated docker image build and push to docker hub with version taging
-4. integerated github webhooks for automatic pipeline triggering.
+Task
+Implement a CI pipeline to automate build, test, and container image creation.
 
-results:
-01. enable fully automated CI process.
-02. reused deployment failures caused by manual steps.
-03. improved release frequency and consistency
+Actions
+Set up Jenkins on EC2 with required plugins and secure global credentials.
+Designed reusable Jenkins pipelines using Jenkinsfile and shared libraries.
+Automated Docker image build and push to Docker Hub with version tagging.
+Integrated GitHub webhooks for automatic pipeline triggering.
 
-Kubernetes and applications deployment
-situation:the application needed a scalable runtime environment with proper service 
-discovery and configuration management.
-Task:
-deploy and manage the application on kubernetes with production ready configurations.
+Results
+Enabled a fully automated CI process.
+Reduced deployment failures caused by manual steps.
+Improved release frequency, consistency, and reliability.
+Kubernetes & Application Deployment
 
-Actions:
-1. deployment application components on AWS EKS.
-2.  configured kubernetes deployments,services,configmaps and secrets
-3 . managed mongodb as a strateful sets with persistent storage.
-4. ensured smoth communications between application and database services
+-------------------------------------------------------------------------------------
+Situation
+The application required a scalable runtime environment with proper service discovery and configuration management.
 
-results:
-1. achive high availability and scalabity
-2. stable application runtime and minimal downtime
+Task
+Deploy and manage the application on Kubernetes with production-ready configurations.
+
+Actions
+Deployed application components on AWS EKS.
+Configured Kubernetes Deployments, Services, ConfigMaps, and Secrets.
+Managed MongoDB as a StatefulSet with persistent storage.
+Ensured smooth communication between application and database services.
+
+Results
+Achieved high availability and scalability.
+Delivered a stable application runtime with minimal downtime.
 
 ****************************************************************************************************
 resume-arial,font 10 no spacing
