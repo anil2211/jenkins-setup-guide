@@ -1,0 +1,356 @@
+AWS DevOps Notes – Improved (Practical + Interview Ready)
+Session 81 – EC2, Load Balancer, Auto Scaling
+
+1. Launch EC2 Instance (Practical Setup)
+
+Steps:
+
+Go to EC2 → Launch Instance
+
+Choose AMI: Ubuntu 20.04 / Amazon Linux
+
+Instance type: t2.micro (Free Tier)
+
+Advanced Details → User Data (Shell Script)
+
+User Data Script (Corrected & Practical)
+#!/bin/bash
+sudo apt update -y
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+cat <<EOF | sudo tee /var/www/html/index.html
+<h1>AWS DevOps Lab</h1>
+<p>We are learning AWS for DevOps</p>
+<p>Main EC2 Instance</p>
+EOF
+
+
+📌 Why User Data? (Interview Question)
+
+Used to automate software installation during instance launch
+
+Runs only once at first boot
+
+2. Monitoring & Troubleshooting EC2
+
+System Log → Check boot failures
+
+Instance Status Checks
+
+System check (AWS hardware)
+
+Instance check (OS level)
+
+CloudWatch → CPU, Network, Disk
+
+📌 Interview Tip:
+If EC2 is not reachable:
+
+Check Security Group
+
+Check Route Table
+
+Check System Logs
+
+3. Launch Template
+
+Used for Auto Scaling & consistency.
+
+Steps:
+
+EC2 → Instances → Actions
+
+Image and Templates → Create Launch Template
+
+Includes:
+
+AMI
+
+Instance type
+
+Security Group
+
+User Data
+
+📌 Interview:
+Launch Template is preferred over Launch Configuration (latest AWS standard).
+
+4. Load Balancer (ELB)
+Why Load Balancer?
+
+Distributes incoming traffic across multiple EC2 instances
+
+Provides high availability & fault tolerance
+
+Target Group (First Step)
+
+Target type: Instance
+
+Protocol: HTTP
+
+Port: 80
+
+Health check: Default
+
+Create Load Balancer
+
+EC2 → Load Balancers → Create
+
+Type:
+
+Application Load Balancer (ALB) ✅
+
+Scheme:
+
+Internet-facing
+
+VPC: Default
+
+Security Group: Same as EC2
+
+Listener:
+
+HTTP → Forward to Target Group
+
+Optional:
+
+AWS WAF (Security)
+
+Create Load Balancer
+
+📌 Interview:
+
+ALB → Layer 7 (HTTP/HTTPS)
+
+NLB → Layer 4 (TCP/UDP)
+
+Gateway LB → Security appliances
+
+5. Auto Scaling Group (ASG)
+
+Automatically increases/decreases EC2 instances.
+
+Steps:
+
+Auto Scaling → Create ASG
+
+Choose Launch Template
+
+Select VPC & Subnets
+
+Attach Target Group
+
+Health Check:
+
+ELB + EC2
+
+Configure:
+
+Min / Max / Desired capacity
+
+Notifications (Optional)
+
+Tags
+
+📌 Interview:
+Auto Scaling improves:
+
+Availability
+
+Cost optimization
+
+Scalability
+
+Summary (Session 81)
+
+✔ EC2
+✔ Target Group
+✔ Load Balancer
+✔ Auto Scaling Group
+
+Session 83 – S3, Static Website, IAM
+1. S3 (Simple Storage Service)
+
+Object storage
+
+Region specific
+
+Globally unique bucket name
+
+Stores:
+
+Images
+
+Videos
+
+Logs
+
+Jenkins artifacts
+
+Bucket Features:
+
+Versioning
+
+Encryption (SSE-S3 default)
+
+ACLs & Bucket Policy
+
+Create S3 Bucket
+
+S3 → Create Bucket
+
+Name: Unique
+
+Region
+
+Enable versioning (optional)
+
+Encryption: Default (SSE-S3)
+
+📌 Interview:
+S3 is not block storage, it is object storage.
+
+2. Static Website Hosting
+
+Steps:
+
+Create index.html
+
+S3 → Bucket → Properties
+
+Enable Static Website Hosting
+
+Index document: index.html
+
+Permissions → Bucket Policy (Public Read)
+
+📌 Use Case:
+Host static websites, resumes, UI apps
+
+3. CloudFront (CDN)
+
+Content Delivery Network
+
+Reduces latency
+
+Cached at edge locations globally
+
+📌 Interview:
+CloudFront improves performance for global users.
+
+4. IAM (Identity and Access Management)
+Why IAM?
+
+Never use root account for daily tasks
+
+IAM User Creation
+
+IAM → Users → Create User
+
+Console access
+
+Add to group: devops_team
+
+Attach policies (EC2, S3, etc.)
+
+📌 Interview:
+IAM controls authentication & authorization.
+
+Session 84 – IAM Roles & AWS CLI
+IAM Roles
+
+Used by AWS services
+
+No access keys required
+
+Secure & recommended
+
+📌 Difference:
+
+User → Human
+
+Role → AWS Service
+
+AWS CLI Commands
+aws s3 ls
+aws s3 mb s3://iam-role-bucket-12345 --region ap-south-1
+
+
+Create file & upload:
+
+echo "Created from EC2 using IAM Role" > demo.txt
+aws s3 cp demo.txt s3://iam-role-bucket-12345/demo.txt
+
+
+📌 Interview Question:
+Can EC2 access S3 without access keys?
+✔ Yes, using IAM Role with proper permissions.
+
+Session 85 – VPC (Networking)
+What is VPC?
+
+Virtual Private Cloud
+
+Your own isolated network in AWS
+
+Region-level service
+
+CIDR Block
+
+Example:
+
+VPC: 10.0.0.0/16
+
+Subnet: 10.0.1.0/24
+
+📌 Interview:
+CIDR defines IP range.
+
+Subnets
+
+Public subnet → Internet access
+
+Private subnet → No direct internet
+
+Availability Zone based.
+
+Route Table
+Destination	Target
+10.0.0.0/16	Local
+0.0.0.0/0	Internet Gateway
+Internet Gateway
+
+Enables internet access for public subnet EC2
+
+NAT Gateway
+
+Allows private subnet instances to access internet outbound only
+
+VPC Setup Steps
+
+Create VPC
+
+Create Subnets
+
+Create Internet Gateway
+
+Create Route Table
+
+Associate Route Table
+
+VPC Peering (Test & Prod)
+
+Connect two VPCs
+
+Allows private IP communication
+
+No overlapping CIDR allowed
+
+📌 Interview:
+VPC Peering is one-to-one and non-transitive.
+
+Final Interview One-Line Summary
+
+“We deployed EC2 using user data, attached it to an ALB via target groups, automated scaling using ASG, stored artifacts in S3, secured access using IAM roles, and designed secure networking using VPC with public/private subnets and peering.”
