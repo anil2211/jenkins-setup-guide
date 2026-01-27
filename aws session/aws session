@@ -1,0 +1,209 @@
+session 81
+
+launch instance ec2 
+advanced oprion
+shell script
+#!/bin/nbash
+
+sudp apt update -y
+sudo apt install install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+cat</var/www/html/index.html>
+AWS Devops Lab
+We are learning aws for devops
+main ec2 instance 
+EOF
+
+
+monitor and troubleshoot=>system logs
+
+
+launch templates
+actions =>image and templates=>create templates for instance
+
+load balancers
+incoming traffic  distrubute  to the multiple instance
+
+to create the load balancer ,first we have to create the target group
+
+intance-target_group_name-protocol http-health check default
+next
+
+load balancer
+application,network,gateway
+
+we use the application
+name
+internet facing
+vpc defualt
+security group same as ec2 instance
+routing http
+routing-target_group_name
+aws web applicatio firewall-security add
+create load balancer
+
+auto scaling group
+name
+launch templates
+latest
+vpc
+target group
+health check
+
+steps:
+choose launch templates
+choose launch instance options
+integerate with others service
+configure gruop size and scaling
+add notification
+add tags
+------------------------------------------------------------------
+ec2 ,load balancing,target gruop,auto scalling group
+
+session 83
+
+simple storage service
+S3 - object storage
+create bucket
+globally exist and unique name
+object forms-any kind of data,video,images ,documents 
+region specific
+availability zone
+ACls-access control list permission policy
+bucket versioning
+default encryption-SSe-S3
+create bucket
+
+static website
+create a index.html page 
+create a new bucket
+properties
+enable
+index.html
+permission
+bucket policy
+
+we can stored the jenkin file also
+CDN-india hosted,but services are global
+high resolution 
+latency high,
+cluodfront-CDN 
+
+-------------------
+IAM user
+Identity and access management
+
+as root user
+as IAM user -always use the IAM 
+id - 
+create user
+user name
+add user to group
+console access
+ add to devops_team group
+ create policy
+ ec2 
+
+ --------------------------
+ s3,IAM,IAM roles
+
+ session 84
+IAM roles -services
+user-human permision
+roles-service permission
+aws cli install
+aws s3 ls
+aws s3 mb s3://iam-role-bucket-12345 --region ap-south-1
+aws s3 ls
+
+echo " created from from ec2 using IAM role" > demo.txt
+ls
+aws s3 cp demo.txt s3://aim-role-created-buckt-1234/demo.txt
+
+can ec2 crate s3 bucket without access key?
+yes ,posible we use the IAM role with the peoper permission and that can give our
+ec2 service access to create s3 bucket without any user configuration and without any access key
+
+
+-----------------
+vpc in devops 
+virtual private cloud
+private data center or cloud
+ip range
+server -private or public
+internet access
+region level service
+
+
+CIDR blocks  ip from 10.0.0/1 to 10.0.0/256
+
+10.0.0/24 ->10.0.0.16
+cidr 
+
+
+subnet-> small part of vpc
+public and private subnet
+availability zone basis
+public subnet-who have access internet,internet facing,use internet gateway
+private subnet-don't have internet access directly,only locally,net gateway
+
+Route table=>which network connect to which
+10.0.0.0/6 local
+0.0.0.0/0  internet gateway
+
+every subnet connect with the route table 
+
+Internet gateway:
+vpc connect to the internet
+provide the internet access  to ec2 on public  subnet
+
+NAT gateway:
+private subnet
+locally not globally
+
+
+
+vpc 
+create vpc
+name
+ipv4 CIDR 10.0.0.0/16
+
+create vpc 
+
+subnet
+create subnet
+name
+availabilty zone
+cidr block
+cidr block-10.0.1./24
+
+
+create internet gateway
+
+create route table
+
+
+-----------------------------
+session  85
+vpc create
+in vpc ec2 instance create
+subnet create 
+route table 
+intrnet gateway
+upto now we have done
+
+two different vpc test and prod
+create  new vpc
+create two different instance connect with prod and test vpc
+
+ping ip-address
+
+
+create peering connection
+
+
+
+
+
