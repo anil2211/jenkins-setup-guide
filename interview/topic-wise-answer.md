@@ -2121,3 +2121,331 @@ validate	Validate configuration
 state list	View managed resources
 import	Import existing infra
 workspace	Manage environments
+
+
+
+=====================================================================================================
+
+🐧 Linux Interview Questions & Answers (DevOps Focused)
+🔹 SECTION 1: LINUX BASICS
+1. What is Linux?
+
+Answer:
+Linux is an open-source, Unix-like operating system kernel used widely in servers, cloud platforms, containers, and DevOps environments. It is stable, secure, and highly customizable.
+
+DevOps context:
+Most cloud services (AWS EC2, EKS nodes, Docker containers) run on Linux.
+
+2. Why is Linux preferred in DevOps?
+
+Answer:
+Linux is preferred because it offers:
+
+Stability & performance
+
+Strong networking & process control
+
+Native support for DevOps tools (Docker, Kubernetes, Jenkins)
+
+Powerful CLI for automation
+
+3. What is the Linux kernel?
+
+Answer:
+The kernel is the core of the OS that manages:
+
+CPU scheduling
+
+Memory
+
+Disk I/O
+
+Device drivers
+
+Networking
+
+4. Difference between Linux and Unix?
+
+Answer:
+
+Linux	Unix
+Open source	Mostly proprietary
+Free	Paid
+Widely used in cloud	Limited usage
+🔹 SECTION 2: FILE SYSTEM & DIRECTORY STRUCTURE
+5. Important Linux directories?
+
+Answer:
+
+Directory	Purpose
+/	Root
+/etc	Config files
+/var/log	Logs
+/home	User files
+/bin	Essential commands
+/usr	Applications
+/tmp	Temporary files
+6. Difference between absolute and relative path?
+
+Answer:
+
+Absolute: /var/log/nginx/access.log
+
+Relative: ../log/access.log
+
+7. How do you find a file in Linux?
+find / -name file.txt
+locate file.txt
+
+🔹 SECTION 3: FILE & DIRECTORY PERMISSIONS
+8. Explain Linux permissions
+
+Answer:
+Linux permissions have:
+
+Read (4)
+
+Write (2)
+
+Execute (1)
+
+Example:
+
+-rwxr-xr--
+
+9. Change permissions?
+chmod 755 file.txt
+chmod u+x file.sh
+
+10. Change ownership?
+chown user:group file.txt
+
+11. What permission is needed to write logs?
+
+Answer:
+
+Write (w) + execute (x) on directory
+
+Write (w) on log file
+
+🔹 SECTION 4: PROCESS MANAGEMENT
+12. What is a process?
+
+Answer:
+A process is a running instance of a program.
+
+13. How do you check running processes?
+ps -ef
+top
+htop
+
+14. Kill a process?
+kill PID
+kill -9 PID
+
+15. Difference between process and service?
+
+Answer:
+
+Process	Service
+Runs manually	Managed by systemd
+No auto-restart	Auto-restart supported
+16. Check service status?
+systemctl status nginx
+
+🔹 SECTION 5: CPU, MEMORY & DISK MONITORING
+17. Check CPU usage?
+top
+htop
+uptime
+
+18. Check memory usage?
+free -h
+vmstat 1 5
+
+19. Check disk usage?
+df -h
+du -sh /var/log/*
+
+20. What is load average?
+
+Answer:
+Load average shows the number of processes waiting for CPU.
+
+🔹 SECTION 6: LOG MANAGEMENT
+21. Where are logs stored?
+
+Answer:
+Mostly under /var/log
+
+22. How do you check logs?
+tail -f app.log
+less app.log
+
+23. What is journalctl?
+journalctl -u nginx
+
+
+Used for systemd service logs.
+
+24. Real-world log troubleshooting?
+
+Answer:
+When app fails:
+
+App logs
+
+Service logs
+
+System logs
+
+Monitoring alerts
+
+🔹 SECTION 7: NETWORKING
+25. Check open ports?
+ss -tulnp
+netstat -tulnp
+lsof -i
+
+26. Check connectivity?
+ping
+curl
+telnet
+
+27. Find which process is using a port?
+lsof -i :8080
+
+28. Difference between TCP and UDP?
+
+Answer:
+
+TCP	UDP
+Reliable	Fast
+Connection-oriented	Connectionless
+🔹 SECTION 8: PACKAGE MANAGEMENT
+29. Install package (Ubuntu)?
+apt install nginx
+
+30. Update system?
+apt update && apt upgrade
+
+🔹 SECTION 9: USER & GROUP MANAGEMENT
+31. Create user?
+useradd anil
+passwd anil
+
+32. Add user to sudo group?
+usermod -aG sudo anil
+
+🔹 SECTION 10: SHELL & SCRIPTING
+33. What is shell scripting?
+
+Answer:
+Automating tasks using shell scripts.
+
+34. Shebang?
+#!/bin/bash
+
+35. Why scripting is important for DevOps?
+
+Answer:
+Used for automation, cron jobs, CI/CD tasks, and server maintenance.
+
+🔹 SECTION 11: SEARCH & TEXT PROCESSING
+36. grep usage?
+grep "error" app.log
+
+37. awk vs sed?
+
+Answer:
+
+awk: Column-based processing
+
+sed: Search & replace
+
+🔹 SECTION 12: CRON & AUTOMATION
+38. What is cron?
+
+Answer:
+Cron schedules tasks automatically.
+
+39. Edit cron job?
+crontab -e
+
+40. Example cron job?
+0 2 * * * backup.sh
+
+🔹 SECTION 13: BOOT & SYSTEM SERVICES
+41. What is systemd?
+
+Answer:
+systemd manages services and system startup.
+
+42. Start service on boot?
+systemctl enable nginx
+
+🔹 SECTION 14: DEVOPS REAL-WORLD SCENARIOS
+43. App not responding but server is up?
+
+Answer:
+
+Check process
+
+Check port
+
+Check logs
+
+Check CPU/memory
+
+Restart service
+
+44. Disk full issue?
+
+Answer:
+
+df -h
+du -sh /var/log/*
+
+
+Clean logs or rotate logs.
+
+45. High CPU usage?
+
+Answer:
+Identify process → optimize → restart → scale if needed
+
+🔹 SECTION 15: LINUX SECURITY
+46. How do you secure Linux servers?
+
+Answer:
+
+Disable root login
+
+Use SSH keys
+
+Firewall (ufw/iptables)
+
+Least privilege access
+
+47. What is sudo?
+
+Answer:
+Allows controlled administrative access.
+
+🔹 SECTION 16: LINUX + DEVOPS TOOLS
+48. Why Linux for Docker & Kubernetes?
+
+Answer:
+Containers use Linux kernel features like namespaces & cgroups.
+
+49. Where do Kubernetes logs live?
+
+Answer:
+Node logs + container logs via kubectl logs.
+
+🔹 SECTION 17: MOST IMPORTANT COMMANDS (MUST REMEMBER)
+top, htop, free, df, du
+ps, kill, systemctl
+grep, awk, sed
+journalctl
+ss, netstat, lsof
