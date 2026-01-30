@@ -3338,6 +3338,7 @@ vmstat 1 5
 19. Check disk usage?
 
 df -h
+
 du -sh /var/log/*
 
 
@@ -3353,12 +3354,14 @@ Load average shows the number of processes waiting for CPU.
 21. Where are logs stored?
 
 Answer:
+
 Mostly under /var/log
 
 
 22. How do you check logs?
 
 tail -f app.log
+
 less app.log
 
 
@@ -3373,10 +3376,15 @@ Used for systemd service logs.
 24. Real-world log troubleshooting?
 
 Answer:
+
 When app fails:
+
 App logs
+
 Service logs
+
 System logs
+
 Monitoring alerts
 
 
@@ -3385,14 +3393,19 @@ Monitoring alerts
 25. Check open ports?
 
 ss -tulnp
+
 netstat -tulnp
+
 lsof -i
 
 
 26. Check connectivity?
 
+
 ping
+
 curl
+
 telnet
 
 
@@ -3404,8 +3417,11 @@ lsof -i :8080
 28. Difference between TCP and UDP?
 
 Answer:
+
 TCP	UDP
+
 Reliable	Fast
+
 Connection-oriented	Connectionless
 
 
@@ -3427,6 +3443,7 @@ apt update && apt upgrade
 31. Create user?
 
 useradd anil
+
 passwd anil
 
 
@@ -3440,6 +3457,7 @@ usermod -aG sudo anil
 33. What is shell scripting?
 
 Answer:
+
 Automating tasks using shell scripts.
 
 
@@ -3451,6 +3469,7 @@ Automating tasks using shell scripts.
 35. Why scripting is important for DevOps?
 
 Answer:
+
 Used for automation, cron jobs, CI/CD tasks, and server maintenance.
 
 
@@ -3465,7 +3484,9 @@ grep "error" app.log
 37. awk vs sed?
 
 Answer:
+
 awk: Column-based processing
+
 sed: Search & replace
 
 
@@ -3473,7 +3494,9 @@ sed: Search & replace
 🔹 SECTION 12: CRON & AUTOMATION
 
 38. What is cron?
+
 Answer:
+
 Cron schedules tasks automatically.
 
 
@@ -3492,7 +3515,9 @@ crontab -e
 🔹 SECTION 13: BOOT & SYSTEM SERVICES
 
 41. What is systemd?
+
 Answer:
+
 systemd manages services and system startup.
 
 42. Start service on boot?
@@ -3506,22 +3531,30 @@ systemctl enable nginx
 
 Answer:
 Check process
+
 Check port
+
 Check logs
+
 Check CPU/memory
+
 Restart service
 
 
 44. Disk full issue?
 Answer:
+
 df -h
+
 du -sh /var/log/*
+
 Clean logs or rotate logs.
 
 
 45. High CPU usage?
 
 Answer:
+
 Identify process → optimize → restart → scale if needed
 
 
@@ -3530,15 +3563,20 @@ Identify process → optimize → restart → scale if needed
 46. How do you secure Linux servers?
 
 Answer:
+
 Disable root login
+
 Use SSH keys
+
 Firewall (ufw/iptables)
+
 Least privilege access
 
 
 47. What is sudo?
 
 Answer:
+
 Allows controlled administrative access.
 
 
@@ -3548,12 +3586,14 @@ Allows controlled administrative access.
 48. Why Linux for Docker & Kubernetes?
 
 Answer:
+
 Containers use Linux kernel features like namespaces & cgroups.
 
 
 49. Where do Kubernetes logs live?
 
 Answer:
+
 Node logs + container logs via kubectl logs.
 
 
@@ -3561,7 +3601,11 @@ Node logs + container logs via kubectl logs.
 🔹 SECTION 17: MOST IMPORTANT COMMANDS (MUST REMEMBER)
 
 top, htop, free, df, du
+
 ps, kill, systemctl
+
 grep, awk, sed
+
 journalctl
+
 ss, netstat, lsof
