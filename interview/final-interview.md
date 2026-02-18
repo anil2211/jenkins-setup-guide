@@ -3,6 +3,7 @@
 Below are 1 to 103 DevOps-related interview questions and answers. Please improve and expand the answers all 103 in detail, ensuring they are technically accurate, industry-relevant, and interview-ready anwer. Organize the content topic-wise (for example: Linux, AWS, Docker, Kubernetes, CI/CD, Terraform, Monitoring, Git, Networking, Security). For each topic: Provide clear explanations Use real-world DevOps examples Include best practices Keep answers interview-friendly answer and  Maintain a clear, structured, and professional format, Do not change the intent of the original answers, but enhance clarity, depth, and technical correctness. The final output should be suitable for: DevOps interview preparation answer.
 
 
+
 1. Tell me something about yourself (Self-Introduction)
  
    Thank you for giving me this opportunity.
