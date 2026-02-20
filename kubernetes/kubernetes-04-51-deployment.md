@@ -9,10 +9,14 @@ and applied outcomes I can use in real life
 
 **************************************************************************
 
-session 51
-
+Kubernetes Notes – Session 51
+Namespaces
 kubectl get ns
-sudo vim pods.yml=> from documentation
+Pod Management
+Create Pod from YAML
+
+pods.yml:
+
 apiVersion: v1
 kind: Pod
 metadata:
@@ -27,24 +31,37 @@ spec:
     image: nginx:latest
     ports:
     - containerPort: 80
----
+
+Commands:
 
 kubectl apply -f pods.yml
 kubectl get pods -n nginx-ns
 kubectl describe pod nginx-pod -n nginx-ns
+Create Pod via Command Line
+kubectl run nginx-pod --image=nginx:latest --port=80 -n nginx-ns
+Notes
 
-by command line
-kubectl run nginx-pod --image=nginx:latest --port -n nginx-ns
+Pod: smallest deployable unit in Kubernetes.
 
-pod-smallest unit
-same  network ,short leaf unit,k8s recreate
+Pods share the same network.
 
-kubectl delete pod name_pod -n nginx-ns
+Short-lived; Kubernetes recreates them if deleted.
 
-deployment.yml
-self healing abilities,replicas,scaling ability,rolling update
+Delete a pod:
 
-sudo vim deployment.yml
+kubectl delete pod <pod-name> -n nginx-ns
+Deployment Management
+Features
+
+Self-healing
+
+Replicas
+
+Scaling ability
+
+Rolling updates
+
+Deployment YAML (deployment.yml)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -67,51 +84,51 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
----
+
+Apply Deployment:
+
 kubectl apply -f deployment.yml
 kubectl get pods -n nginx-ns
 kubectl get deployment -n nginx-ns
-
 watch kubectl get pods -n nginx-ns
 
-kubectl delete pod pod-name -n nginx-ns
+Delete a pod (Deployment auto-recreates):
 
-recreate the pod automatically
-
-# architechture
-# if deployment is create then it maintain it actual state and desired state
-# api server-etcd-scdeuler-control manager(analyze)
-# kubelet-worker-node-container runtime.
-
-# kubernetes work desired state maintain
-
+kubectl delete pod <pod-name> -n nginx-ns
+Scaling Deployment
 kubectl scale deployment nginx-deployment --replicas=5 -n nginx-ns
 kubectl get deployment -n nginx-ns
-kubectl get pods -n nginx-
+kubectl get pods -n nginx-ns
 
 kubectl scale deployment nginx-deployment --replicas=2 -n nginx-ns
+Updating Deployment
+
+Edit deployment YAML:
+
+sudo vim deployment.yml
+
+Change the container image version.
+
+Apply changes:
 
 kubectl apply -f deployment.yml
-sudo vim deployment.yml 
-change image version
 
-then 
-kubectl apply -f deployment.yml
+Kubernetes performs a rolling update: one pod at a time, maintaining user experience.
 
-one by one update pod or container not all one time
-user experience not affect
+Services
+Service Types
 
-# service.yml
-service has types 
-1. cluster ip default(inside cluster,local one but may be port forwad)
-2. node port-(service cluster can excess outside using ip and port)
-3. load balancer(public ip and port)
-4. ingress(public ip and port)
-5. external ip(public ip and port)
+ClusterIP – default, accessible inside cluster.
 
+NodePort – accessible outside cluster via <nodeIP>:<port>.
 
-sudo vim service.yml
+LoadBalancer – provides public IP & port.
 
+Ingress – public IP & routing rules.
+
+External IP – direct public IP & port.
+
+Service YAML (service.yml)
 apiVersion: v1
 kind: Service
 metadata:
@@ -122,15 +139,34 @@ spec:
     app: nginx
     version: v1
   ports:
-  - port: 80  #cluster/host
-    targetPort: 80 #container port
+  - port: 80        # Cluster/Host
+    targetPort: 80  # Container port
     protocol: TCP
   type: NodePort
 
+Apply Service:
+
 kubectl apply -f service.yml
 kubectl get all -n nginx-ns
-
-# port forwading
+Port Forwarding
 sudo -E kubectl port-forward service/nginx-service -n nginx-ns 80:80 --address=0.0.0.0
+Kubernetes Architecture Notes
 
+Kubernetes maintains desired state automatically.
+
+Components:
+
+API Server – entry point for commands
+
+etcd – key-value store for cluster state
+
+Scheduler – assigns pods to nodes
+
+Controller Manager – ensures actual state matches desired state
+
+Kubelet – agent running on worker nodes
+
+Container Runtime – runs containers
+
+Cleanup
 kubectl delete ns nginx-ns
