@@ -1,5 +1,21 @@
+
+
+
 I want to master kubernetes fast.Break it down using the 80/20
 rule: whats the 20% that gives me 80% of the results?Keeps it clear and practical
+
+
+Architecture (mental model)
+Deployment
+Service
+Ingress
+ConfigMap & Secret
+Resource limits (requests/limits)
+Liveness & Readiness probes
+PVC (Persistent Storage)
+HPA (Autoscaling)
+Debugging using kubectl
+
 
 First: Clear the Docker Confusion (Industry Reality)
 ❌ “Docker alone is enough” — NOT true in production
