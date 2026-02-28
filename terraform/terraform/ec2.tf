@@ -58,6 +58,7 @@ resource "aws_security_group" "ec2_sg"{
 
 # ec2 instance resource
 resource "aws_instance" "my_ec2"{
+    count = var.instance_count
     ami = var.ami_id
     instance_type = var.instance_type
     key_name = aws_key_pair.my_key.key_name
@@ -73,5 +74,16 @@ resource "aws_instance" "my_ec2"{
 
 output "ec2_public_ip" {
     description = "The public IP address of the EC2 instance"
-    value = aws_instance.my_ec2.public_ip
+    value = aws_instance.my_ec2[*].public_ip
+}
+
+
+# temporary resource block for import
+resource "aws_instance" "imported_ec2"{
+    # empty block for import
+    ami = "paste the ami id "
+    instance_type = "t3.micro"
+    tags = {
+        Name = "imported-ec2"
+    }
 }
