@@ -1,0 +1,8 @@
+1. launch ec2-instanc on aws
+2. git clone 
+3.cd project folder
+4. sudo apt update -y
+5. install terraform first
+6. install aws cli
+7. aws configure
+8. 

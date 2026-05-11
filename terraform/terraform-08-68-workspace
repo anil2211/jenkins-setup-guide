@@ -1,0 +1,23 @@
+terraform import aws_s3_bucket.remote-s3 bucket name
+
+terraform refresh
+
+terraform init --reconfigure
+terraform plan
+terraform apply -auto-approve
+
+generate key
+ssh-keygen -t rsa -b 4096 -f my-key
+
+terraform init
+terraform validate
+terraform plan
+terraform workspace list
+terraform workspace new prod
+terraform workspace new dev
+terraform wokspace new stage
+
+terraform workspace select dev
+
+teraform apply -var-file=enviroments/dev.tfvars
+

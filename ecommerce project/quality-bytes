@@ -6,7 +6,7 @@ session 78
 trivy -scan code for the vulneribit an sceurity issue
 user data- run the install tool.sh scripts
 
-1. create a ec2 instance on aws cloud
+1. create a ec2 instance on aws cloud ,this is the host server
 name QBShop
 instance type large=t2xlarge
 allow all https
@@ -32,9 +32,10 @@ aws IAM user create user
 create access key and for the cli access
 aws configure
 
+to check  verify
 aws s3 ls
 
-ssh-keygen -f qualibytes-key
+ssh-keygen -f qualibytes-key(name of the key)
 chmod 400 qualiibytes-key
 ls
 cd teraform 
@@ -43,6 +44,12 @@ terraform validate
 terraform plan
 terraform apply --auto approve
 terraform output
+
+copy the ip address and paste in the browser 8080 jenkins
+sudo systemctl status jenkins
+copy the password and paste in the jenkins login page
+exit
+
 terraform state
 
 terraform destroy
@@ -56,6 +63,10 @@ ssh -i qualibytes-key ubuntu@ip   #for jenkins instance
 sudo systenctl status jenkins
 copy the password
 
+on host server 
+aws eks --region ap-south-1 update-kubeconfig --name qualibytes-eks-cluster
+
+on jenkins server
 install plugins=>docker,docker pipeline,pipeline stage view,git
 restart jenkins
 
@@ -63,9 +74,12 @@ and from the host
 exit
 clear
 ---------------------------------------------
-aws eks --requion ap-south-1 update-kubeconfig --name qualitybytes-cluster
+aws eks --requion ap-south-1 update-kubeconfig --name qualibytes-cluster
+
+on host server
 kubectl get nodes
 install kubectl on the host server
+sudo snap install kubectl --classic
 kubectl get nodes
 
 git status
@@ -92,8 +106,9 @@ terraform output
 jenkins is also running
 in jenkins file we used the shared library which is on github
 
-creadebtals setup in jenkins
+creadentials setup in jenkins
 
+add credentials in the jenkins
 credentials-global-add credentials
 username-github _username
 password-create personal access token classic github
@@ -109,7 +124,7 @@ name-shared
 defaut version -main
 
 retrival method-modern SCM
-git
+git-hub
 project repository
 shared library -repositories
 
@@ -133,27 +148,31 @@ on jenkins server
 
 on host server
 kubectl get nodes
-
 aws s3 ls
-
 kubectl create namespace argocd
 install argocd
-
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
 watch kubectl get pods -n argocd
-
 kubectl get svc -n argocd
 
-to run run or expose in node port,we use pathc ,because it is internally running
+to run run or expose in node port,we use path ,because it is internally running
 on host server
-
 kubectl patch svc argocd-server -n argocd -p '{"spec"": {""type"": ""NodePort"}}'
-
 kubectl get svc -n argocd
 
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.username}' | base64 -d 
+eks node on-----
+security group add from port which is provide by nodeport in that node group
+
+
+kubectl -n argocd get secret argocd-initial-admin-secret \
+-o jsonpath="{.data.password}" | base64 -d
 we get password
+
+now everthing on argocd ------
+login username admin
+
+userinfo-update password
+
 
 now open port 32600 in node port
 then open ip:32600 in browser
@@ -165,21 +184,34 @@ type git
 default 
 repository url
 
-add cluster
+add cluster is always with the argocd cli
 use cli 
-install argocd cli
+
+install argocd cli on host server
+
+VERSION=$(curl -s https://api.github.com/repos/argoproj/argo-cd/releases/latest | grep tag_name | cut -d '"' -f 4)
+curl -sSL -o argocd \
+  "https://github.com/argoproj/argo-cd/releases/download/${VERSION}/argocd-linux-amd64"
+chmod +x argocd
+sudo mv argocd /usr/local/bin/
+
 use documentation to install
 
 argocd version
 
-argocd login ip:32600
+argocd login ip with port number:32600
+13.126.214.13:30597
+
+argocd account get-user-info
 
 now we add cluster
 argocd account get-user-info
 kubectl get nodes
 aws sts get-caller-identity
+ 
+kubectl config get-contexts 
 
-kubectl config get-contexts
+copy the arn:aws:eks:ap-south-1:589745010854:cluster/qualitybytes-eks-cluster and use it.
 
 kubectl config use-context arn:aws:eks:ap-south-1:589745010854:cluster/qualitybytes-eks-cluster
 
@@ -192,10 +224,11 @@ now confirmation so check through ui
 ip:32600
 inside the cluster,our cluster is created
 
+
 new app-qubishop
 default
 manual
-prune lastauto create namespace
+prune last auto create namespace
 source
 dev
 path-kubernetes
@@ -205,14 +238,14 @@ cluster url
 namespace
 qbshop
 
-now on termonal host
+now on terminal host
 kubectl create namespace ingress-nginx
 install helm
 curl -fsSl -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 chmod +x get_helm.sh
 ./get_helm.sh
 
-helm --version
+helm version
 
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
@@ -222,12 +255,16 @@ kubectl get pods -n ingress-nginx
 kubectl get svc -n ingress-nginx
 
 now again open argocd
-ip:32600
+ip_adress:32600
 outofsync error if due to cert manager
 
 install cert 
 helm repo add jetstack https://charts.jetstack.io
-helm install cert-manager jetstack/cert-manager --namespace cert-manager create-namespace --version v1.12.0 --set installCRDs=true
+helm install cert-manager jetstack/cert-manager \
+  --namespace cert-manager \
+  --create-namespace \
+  --version v1.12.0 \
+  --set installCRDs=true
 
 kubectl get pods -n cert-manager
 
@@ -236,6 +273,7 @@ kubectl get svc nginx-ingress-nginx-controller -n ingress-nginx -o jsonpath='{st
 
 now everthing working upto 
 frontend is working and listening and ip of pod:30000
+add port number in node port
 
 kubectl get ns
 kubectl get pods -n qbshop
@@ -264,7 +302,9 @@ qbshop.sriv.shop
 
 ----monitoring
 helm version
-intall the promethus  using the helm
+install the promethus  using the helm
+
+helm repo add promethus-community https://prometheus-community.github.io/helm-charts
 
 helm repo add stable https://charts.helm.sh/stable
 helm repo update
@@ -287,15 +327,17 @@ now prometheus and graphana to be used in as browser so use the  loadbalancer to
 
 kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
 it open the .yml
-change type into LoadBalancer
+change clusterIp to type into LoadBalancer
 
 kubectl edit svc stable-grafana -n prometheus
 it open the .yml
-change type into LoadBalancer
+change type clusterIP into LoadBalancer
 
-ip:ports in the browser
+ip address :ports in the browser 
+ kubectl get svc -n prometheus
 
-in grafabna need password
+
+in grafana need password
 kubectl get secret --namespace prometheus stable-grafana -o jsonpath='{.data.admin-password}' | base64 -d; echo
 it give the password
 
