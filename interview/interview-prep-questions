@@ -1,0 +1,2538 @@
+# DevOps Engineer Interview Questions & Answers
+
+## 103 Interview Questions — Linux, AWS, Docker, Kubernetes, CI/CD, Terraform, Monitoring, Git, Networking & Security
+
+---
+
+# 1. Self-Introduction & Project Background
+
+## 1. Tell me something about yourself.
+
+**Answer:**
+
+Thank you for giving me this opportunity.
+
+My name is **Anil Choudhary**, and I am from **Indore**. I am a DevOps Engineer with around one year of hands-on experience working on a production-grade e-commerce application at **Delta 360 Services**.
+
+My primary responsibilities include **CI/CD automation, AWS infrastructure management, containerization, Kubernetes deployments, monitoring, and production support**.
+
+I have hands-on experience with tools and technologies such as **AWS, Jenkins, Docker, Kubernetes/EKS, Terraform, Argo CD, Prometheus, and Grafana**.
+
+In my current role, I work closely with development teams to automate application delivery, maintain infrastructure, troubleshoot production issues, and ensure reliable and minimal-downtime deployments.
+
+I am particularly interested in **cloud infrastructure, automation, Kubernetes, CI/CD, and production reliability**, and I continuously work on improving my DevOps skills.
+
+That is a brief introduction about me.
+
+---
+
+## 2. What are your roles and responsibilities in your project?
+
+**Answer:**
+
+My key responsibilities include:
+
+* Designing and maintaining AWS infrastructure using **Terraform**.
+* Managing infrastructure components such as **VPC, EC2, EKS, IAM, and related AWS resources**.
+* Building and maintaining **Jenkins CI/CD pipelines**.
+* Automating application builds and Docker image creation.
+* Building Docker images and pushing them to **Docker Hub/container registries**.
+* Configuring **GitHub Webhooks** to automatically trigger Jenkins pipelines.
+* Deploying applications on **AWS EKS** using Kubernetes Deployments, Services, ConfigMaps, and Secrets.
+* Implementing **GitOps-based deployments using Argo CD**.
+* Monitoring production applications using **Prometheus and Grafana**.
+* Troubleshooting issues such as pod failures, pipeline failures, deployment failures, and application availability problems.
+* Working closely with developers during deployments and production incidents.
+
+---
+
+## 3. Walk me through your background and current role at Delta 360 Services.
+
+**Answer:**
+
+I have worked as a DevOps Engineer at **Delta 360 Services**, where I supported a production-grade e-commerce application hosted on AWS.
+
+My role involves **CI/CD automation, infrastructure provisioning, Kubernetes management, monitoring, and production support**.
+
+I work with tools such as Jenkins, Docker, Kubernetes/EKS, Terraform, Argo CD, Prometheus, Grafana, and AWS.
+
+My responsibilities cover the complete deployment lifecycle, starting from code integration and automated builds through containerization, deployment, monitoring, and troubleshooting.
+
+---
+
+## 4. What kind of client or project have you been working on?
+
+**Answer:**
+
+I have been working on a **production-grade international e-commerce platform hosted on AWS**.
+
+The application requires high availability, scalability, security, monitoring, and minimal downtime.
+
+From the DevOps side, I have worked on infrastructure automation, CI/CD pipelines, containerization, Kubernetes deployments, monitoring, and production support.
+
+---
+
+## 5. What environments have you supported?
+
+**Answer:**
+
+I have supported **development, staging, and production environments**.
+
+The development environment is mainly used for development and testing, staging is used for pre-production validation, and production serves the actual users.
+
+I have also been involved in production support, including deployment monitoring, troubleshooting, pipeline failures, application issues, and infrastructure-related problems.
+
+---
+
+## 6. What was your role in the project lifecycle?
+
+**Answer:**
+
+My role covered multiple stages of the project lifecycle:
+
+1. Infrastructure provisioning using Terraform.
+2. CI/CD pipeline development using Jenkins.
+3. Docker image creation and versioning.
+4. Kubernetes deployment on AWS EKS.
+5. GitOps deployment using Argo CD.
+6. Monitoring using Prometheus and Grafana.
+7. Production troubleshooting and incident support.
+8. Continuous improvement and automation.
+
+This allowed me to work across the complete application delivery and operations lifecycle.
+
+---
+
+## 7. What parts were handled by developers vs. DevOps?
+
+**Answer:**
+
+Developers primarily handled **application development, feature implementation, bug fixing, and unit testing**.
+
+The DevOps team handled:
+
+* CI/CD pipelines
+* Infrastructure
+* Cloud resources
+* Docker/containerization
+* Kubernetes deployments
+* Monitoring
+* Logging
+* Security integration
+* Production support
+* Deployment automation
+* Reliability and availability
+
+There is also close collaboration between both teams. Developers provide the application code, while DevOps provides the automation, infrastructure, deployment, and operational support required to run the application reliably.
+
+---
+
+## 8. Which tools did you use most frequently and why?
+
+**Answer:**
+
+The tools I used most frequently are:
+
+* **Jenkins** – CI/CD automation.
+* **Docker** – Application containerization.
+* **Kubernetes/EKS** – Container orchestration.
+* **Terraform** – Infrastructure as Code.
+* **AWS** – Cloud infrastructure.
+* **Argo CD** – GitOps-based deployments.
+* **Prometheus** – Metrics collection and monitoring.
+* **Grafana** – Monitoring dashboards and visualization.
+* **Git/GitHub** – Source code management and collaboration.
+
+These tools helped automate the software delivery lifecycle and improve deployment reliability.
+
+---
+
+## 9. Why did you use Argo CD? What did you achieve?
+
+**Answer:**
+
+We used **Argo CD** to implement a GitOps-based deployment model.
+
+The idea was to use Git as the **source of truth** for Kubernetes deployment configurations.
+
+Argo CD continuously compares the desired state stored in Git with the actual state in the Kubernetes cluster. If there is a difference, Argo CD can synchronize the application to the desired state.
+
+The main benefits we achieved were:
+
+* Declarative deployments.
+* Better deployment consistency.
+* Git-based change history.
+* Easier rollback.
+* Reduced manual deployment activities.
+* Better visibility into application deployment status.
+
+---
+
+## 10. What does production support mean in your role?
+
+**Answer:**
+
+Production support means ensuring that live applications remain **available, stable, secure, and performant**.
+
+My production support responsibilities include:
+
+* Monitoring application health.
+* Troubleshooting failed pods and deployments.
+* Investigating pipeline failures.
+* Checking application and system logs.
+* Monitoring CPU, memory, and other metrics.
+* Troubleshooting infrastructure issues.
+* Supporting deployments and rollbacks.
+* Coordinating with developers when application-level issues occur.
+
+The main goal is to minimize downtime and reduce the impact of production incidents.
+
+---
+
+# 2. DevOps Concepts & Career
+
+## 11. What is DevOps according to you?
+
+**Answer:**
+
+DevOps is a combination of **culture, practices, processes, and tools** that brings development and operations teams together.
+
+The main goal is to deliver software **faster, more reliably, and continuously** through automation, collaboration, monitoring, and feedback.
+
+For example, instead of manually building and deploying an application, we can use Git, Jenkins, Docker, Kubernetes, and Argo CD to automate the complete delivery process.
+
+---
+
+## 12. Why did you choose DevOps as a career?
+
+**Answer:**
+
+I chose DevOps because I enjoy **automation, problem-solving, cloud technologies, and troubleshooting**.
+
+DevOps provides an opportunity to work across development, infrastructure, deployment, monitoring, and reliability.
+
+I also like the fact that DevOps requires continuous learning because technologies such as cloud platforms, Kubernetes, automation, and security continue to evolve.
+
+---
+
+## 13. What motivated you to focus on DevOps and AWS?
+
+**Answer:**
+
+My interest in **automation, cloud infrastructure, scalable systems, and production reliability** motivated me to focus on DevOps and AWS.
+
+AWS provides a wide range of services for infrastructure, networking, security, compute, storage, monitoring, and container orchestration.
+
+Combining AWS with DevOps practices allows organizations to build scalable and automated infrastructure.
+
+---
+
+## 14. What DevOps role are you targeting next?
+
+**Answer:**
+
+I am looking for a **DevOps Engineer role with deeper responsibilities in cloud infrastructure, Kubernetes, CI/CD, automation, and production support**.
+
+I would like to work on scalable infrastructure, improve deployment automation, strengthen monitoring and security, and gain deeper experience with production-grade cloud environments.
+
+---
+
+## 15. What part of DevOps did you enjoy the most?
+
+**Answer:**
+
+I particularly enjoy **CI/CD automation and cloud infrastructure management**.
+
+I like building pipelines that reduce manual work and make deployments faster and more reliable.
+
+I also enjoy troubleshooting production issues because it requires understanding the complete system—from application code and containers to Kubernetes, networking, and infrastructure.
+
+---
+
+## 16. Which DevOps tools are you most confident with and why?
+
+**Answer:**
+
+I am most confident with **AWS, Kubernetes/EKS, Jenkins, Docker, and Terraform**.
+
+I have hands-on experience using them for:
+
+* CI/CD automation.
+* Containerization.
+* Kubernetes deployments.
+* AWS infrastructure management.
+* Infrastructure automation.
+* Production troubleshooting.
+
+I also have experience with Argo CD, Prometheus, Grafana, SonarQube, and Trivy.
+
+---
+
+## 17. What kind of DevOps role are you looking for?
+
+**Answer:**
+
+I am looking for a DevOps role where I can work on:
+
+* AWS/cloud infrastructure.
+* CI/CD pipelines.
+* Kubernetes.
+* Infrastructure as Code.
+* Automation.
+* Monitoring and observability.
+* Production support.
+* Security and reliability.
+
+I want to continue developing my skills while contributing to stable and scalable production systems.
+
+---
+
+# 3. Linux & System Administration
+
+## 18. How do you analyze logs in Linux?
+
+**Answer:**
+
+I normally start by checking the relevant application or service logs.
+
+For real-time monitoring, I use:
+
+```bash
+tail -f logfile
+```
+
+For searching and filtering:
+
+```bash
+grep "ERROR" logfile
+less logfile
+awk
+sed
+```
+
+For systemd-managed services:
+
+```bash
+journalctl -u service-name
+```
+
+I usually combine these commands to identify error patterns, timestamps, affected components, and the possible root cause.
+
+---
+
+## 19. What is the difference between a process and a service?
+
+**Answer:**
+
+A **process** is a running instance of a program.
+
+For example, when a Python or Java application is running, it appears as a process in the operating system.
+
+A **service** is generally a long-running application or background process managed by a service manager such as **systemd**.
+
+For example:
+
+```bash
+systemctl status nginx
+```
+
+A service can also be configured to start automatically during boot and restart automatically after failure.
+
+---
+
+## 20. What steps will you take if an application is not responding on a server?
+
+**Answer:**
+
+I follow a systematic troubleshooting approach.
+
+### Step 1: Check server health
+
+```bash
+top
+free -h
+df -h
+uptime
+```
+
+### Step 2: Check whether the application process is running
+
+```bash
+ps aux | grep application
+systemctl status application
+```
+
+### Step 3: Check application logs
+
+```bash
+tail -f application.log
+journalctl -u application
+```
+
+### Step 4: Check the application port
+
+```bash
+ss -tulnp
+lsof -i :8080
+```
+
+### Step 5: Check network connectivity
+
+I verify connectivity between the client, server, application, database, and other required services.
+
+### Step 6: Check dependencies
+
+For example, I check database connectivity, external APIs, DNS, and other dependencies.
+
+If the root cause is identified and a restart is appropriate, I restart the service and monitor it.
+
+If it is an application-level issue, I coordinate with the development team.
+
+---
+
+## 21. As a DevOps Cloud Support Engineer, how do you check CPU and disk usage in Linux?
+
+**Answer:**
+
+For CPU usage, I use:
+
+```bash
+top
+htop
+ps aux --sort=-%cpu
+```
+
+For disk usage:
+
+```bash
+df -h
+```
+
+To identify which directories are consuming space:
+
+```bash
+du -sh /var/log/*
+```
+
+These commands help me quickly identify whether resource exhaustion is affecting the application.
+
+---
+
+## 22. How do you check network ports?
+
+**Answer:**
+
+I commonly use:
+
+```bash
+ss -tulnp
+```
+
+or:
+
+```bash
+netstat -tulnp
+```
+
+I can also use:
+
+```bash
+lsof -i :8080
+```
+
+`ss` is the modern Linux utility for inspecting sockets.
+
+* `-t` = TCP
+* `-u` = UDP
+* `-l` = listening
+* `-n` = don't resolve names
+* `-p` = show process information
+
+`lsof` is particularly useful when I want to identify which process is using a specific port.
+
+For remote connectivity testing, I may use tools such as `nc` or `curl`, depending on the protocol.
+
+---
+
+## 23. How do you check errors?
+
+**Answer:**
+
+I check errors at multiple levels:
+
+1. Application logs.
+2. System logs.
+3. Service logs.
+4. Kubernetes events and pod logs.
+5. CI/CD pipeline logs.
+6. Monitoring and alerting dashboards.
+7. Network connectivity and dependency status.
+
+I then correlate timestamps and error messages to identify the root cause instead of simply restarting the service.
+
+---
+
+## 24. When do you use `awk` or `sed`?
+
+**Answer:**
+
+I use **awk** mainly for field-based data processing, filtering, calculations, and reporting.
+
+Example:
+
+```bash
+awk '{print $1, $7}' access.log
+```
+
+I use **sed** mainly for searching, replacing, and modifying text line by line.
+
+Example:
+
+```bash
+sed 's/old-value/new-value/g' file.txt
+```
+
+In simple terms:
+
+* **awk** → columns, fields, calculations, reports.
+* **sed** → search, replace, and text manipulation.
+
+---
+
+## 25. How do you troubleshoot a monolithic server without Kubernetes?
+
+**Answer:**
+
+For a traditional server-based application, I follow these steps:
+
+1. Check CPU and memory.
+2. Check disk space.
+3. Check whether the application process is running.
+4. Check service status.
+5. Check application logs.
+6. Check system logs.
+7. Check network ports.
+8. Check database connectivity.
+9. Check dependent services.
+10. Restart the service if required.
+11. Monitor the application after recovery.
+
+The goal is to identify the root cause before taking corrective action.
+
+---
+
+## 26. How do you identify high CPU-consuming processes?
+
+**Answer:**
+
+I use:
+
+```bash
+top
+```
+
+or:
+
+```bash
+htop
+```
+
+I can also use:
+
+```bash
+ps aux --sort=-%cpu | head
+```
+
+This helps identify which processes are consuming the most CPU.
+
+---
+
+## 27. Why do we use `journalctl`?
+
+**Answer:**
+
+`journalctl` is used to query logs collected by **systemd's journal**.
+
+For example:
+
+```bash
+journalctl -u nginx
+```
+
+To view recent logs:
+
+```bash
+journalctl -u nginx -n 100
+```
+
+To follow logs in real time:
+
+```bash
+journalctl -u nginx -f
+```
+
+It is very useful for troubleshooting system services and understanding when and why a service failed.
+
+---
+
+## 28. What permissions are required for an application to write logs?
+
+**Answer:**
+
+The application user needs appropriate **write permission** on the log file or directory.
+
+For a directory, the user also generally needs **execute (`x`) permission** to access files inside it.
+
+Linux permissions are:
+
+* `r` = Read = 4
+* `w` = Write = 2
+* `x` = Execute = 1
+
+For example:
+
+```bash
+ls -l
+```
+
+Permissions can be modified using:
+
+```bash
+chmod u+w file.txt
+chmod g+w file.txt
+chmod o+w file.txt
+```
+
+For example:
+
+```bash
+chmod 400 file.txt
+```
+
+means the owner has read-only permission, while group and others have no permissions.
+
+In production, I prefer using correct **ownership and group permissions** rather than unnecessarily giving broad write access.
+
+---
+
+## 29. How do you check Linux server health?
+
+**Answer:**
+
+I use several commands:
+
+### CPU and processes
+
+```bash
+top
+htop
+```
+
+### Load average
+
+```bash
+uptime
+```
+
+### Memory
+
+```bash
+free -h
+```
+
+### Detailed memory/system statistics
+
+```bash
+vmstat 1 5
+```
+
+### Disk
+
+```bash
+df -h
+```
+
+### Directory-level disk usage
+
+```bash
+du -sh /var/log/*
+```
+
+I use these commands together to get an overall picture of server health.
+
+---
+
+## 30. How do you check average system load?
+
+**Answer:**
+
+I use:
+
+```bash
+uptime
+```
+
+or:
+
+```bash
+top
+```
+
+Linux displays load averages for the **1-minute, 5-minute, and 15-minute** periods.
+
+I compare the load average with the number of available CPU cores to determine whether the system is under significant CPU or scheduling pressure.
+
+---
+
+## 31. How is a system service different from a normal process?
+
+**Answer:**
+
+A normal process is simply a running program.
+
+A system service is typically a long-running process managed by a service manager such as **systemd**.
+
+A systemd service can:
+
+* Start automatically at boot.
+* Be started or stopped using `systemctl`.
+* Restart automatically after failure.
+* Have centralized logs through journald.
+* Have defined dependencies.
+
+---
+
+## 32. Where do you usually check when an application fails on Linux?
+
+**Answer:**
+
+I normally check:
+
+1. Application logs.
+2. Service status.
+3. System logs.
+4. CPU and memory.
+5. Disk space.
+6. Network ports.
+7. Dependencies such as databases or APIs.
+
+For systemd services, I commonly use:
+
+```bash
+systemctl status service-name
+journalctl -u service-name
+```
+
+---
+
+## 33. What Linux issues can cause high CPU or memory usage?
+
+**Answer:**
+
+Common causes include:
+
+* Infinite loops.
+* Memory leaks.
+* Heavy background jobs.
+* Cron jobs running unexpectedly.
+* Misconfigured applications.
+* High traffic.
+* Large or inefficient queries.
+* Excessive logging.
+* Too many application processes.
+* Resource limits that are too low.
+
+High resource usage can result in slow applications, timeouts, service crashes, and system instability.
+
+---
+
+## 34. What happens when Linux runs out of memory?
+
+**Answer:**
+
+When available RAM becomes low, Linux may use **swap space** if it is configured.
+
+Swap is slower than RAM, so heavy swapping can significantly affect performance.
+
+If memory pressure becomes severe, Linux may invoke the **OOM (Out of Memory) Killer**, which terminates selected processes to recover memory.
+
+This can cause application downtime or unexpected restarts.
+
+In production, I would investigate memory usage, application behavior, container limits, and system metrics to identify the root cause.
+
+---
+
+## 35. How do you check logs on a running Linux server?
+
+**Answer:**
+
+For application logs:
+
+```bash
+tail -f logfile
+```
+
+or:
+
+```bash
+less logfile
+```
+
+For systemd services:
+
+```bash
+journalctl -u service-name
+```
+
+Common system log locations include:
+
+```text
+/var/log/
+```
+
+For Kubernetes workloads, I use:
+
+```bash
+kubectl logs pod-name
+```
+
+---
+
+## 36. What Linux issues can occur due to high CPU or memory usage?
+
+**Answer:**
+
+High CPU or memory usage can cause:
+
+* Application slowness.
+* Increased response time.
+* Request timeouts.
+* High system load.
+* Service crashes.
+* Container restarts.
+* System unresponsiveness.
+* OOM-related process termination.
+
+I use monitoring tools and Linux commands to identify the affected process and determine the root cause.
+
+---
+
+# 4. Git, CI/CD & Jenkins
+
+## 37. How does code move from GitHub to production?
+
+**Answer:**
+
+A typical flow in my project is:
+
+```text
+Developer
+   ↓
+GitHub
+   ↓
+GitHub Webhook
+   ↓
+Jenkins
+   ↓
+Build
+   ↓
+Test / SonarQube
+   ↓
+Docker Image Build
+   ↓
+Trivy Security Scan
+   ↓
+Container Registry
+   ↓
+GitOps Configuration
+   ↓
+Argo CD
+   ↓
+AWS EKS
+   ↓
+Production
+```
+
+Developers push code to GitHub. A webhook triggers Jenkins, which performs the CI activities such as build and testing.
+
+Jenkins creates the Docker image and pushes it to the container registry.
+
+The deployment configuration is then updated, and Argo CD synchronizes the desired state to the Kubernetes cluster.
+
+---
+
+## 38. Explain the CI/CD pipeline you worked on.
+
+**Answer:**
+
+Our CI/CD pipeline typically includes:
+
+1. Code checkout from GitHub.
+2. Application build.
+3. Unit testing.
+4. SonarQube code-quality analysis.
+5. Docker image creation.
+6. Trivy vulnerability scanning.
+7. Docker image push to the registry.
+8. Deployment configuration update.
+9. Argo CD synchronization to Kubernetes.
+10. Post-deployment verification.
+
+This automation reduces manual intervention and provides a consistent deployment process.
+
+---
+
+## 39. What actions trigger Jenkins pipelines?
+
+**Answer:**
+
+Jenkins pipelines can be triggered by:
+
+* GitHub Webhooks.
+* Code commits.
+* Pull request or merge events.
+* Scheduled jobs.
+* Manual execution.
+* API triggers.
+* Other upstream Jenkins jobs.
+
+In my project, GitHub Webhooks were used to automatically trigger Jenkins when code changes were pushed.
+
+---
+
+## 40. How do you divide a CI/CD pipeline into stages?
+
+**Answer:**
+
+A typical pipeline can be divided into:
+
+1. Checkout.
+2. Build.
+3. Unit Test.
+4. Code Quality Analysis.
+5. Docker Image Build.
+6. Security Scan.
+7. Image Push.
+8. Deployment.
+9. Post-deployment Verification.
+
+Each stage has a specific responsibility, which makes failures easier to identify and troubleshoot.
+
+---
+
+## 41. If a pipeline breaks during deployment, how do you respond?
+
+**Answer:**
+
+First, I identify the failed stage from the Jenkins console output.
+
+Then I:
+
+1. Analyze the error message.
+2. Check recent code or configuration changes.
+3. Verify credentials and environment variables.
+4. Check Docker image availability.
+5. Check Kubernetes manifests.
+6. Check Kubernetes events and pod status.
+7. Roll back if necessary.
+8. Fix the root cause.
+9. Re-run the pipeline.
+10. Verify the application after deployment.
+
+If the issue impacts production, I prioritize service recovery first and then perform root-cause analysis.
+
+---
+
+## 42. What stages do you define in a CI/CD pipeline?
+
+**Answer:**
+
+Typical stages are:
+
+```text
+Checkout
+   ↓
+Build
+   ↓
+Test
+   ↓
+SonarQube Analysis
+   ↓
+Docker Build
+   ↓
+Trivy Scan
+   ↓
+Push Image
+   ↓
+Deployment
+   ↓
+Verification
+```
+
+The exact stages depend on the application's technology and organizational requirements.
+
+---
+
+## 43. What was your ownership in CI/CD and infrastructure?
+
+**Answer:**
+
+My responsibilities included:
+
+* Creating and maintaining Jenkins pipelines.
+* Configuring Jenkins.
+* Integrating GitHub Webhooks.
+* Building Docker images.
+* Managing image versioning.
+* Integrating quality and security checks.
+* Supporting Kubernetes deployments.
+* Managing AWS infrastructure through Terraform.
+* Troubleshooting CI/CD failures.
+* Supporting production deployments.
+
+---
+
+## 44. How do you coordinate with developers during deployments?
+
+**Answer:**
+
+I coordinate with developers through team communication channels, deployment discussions, tickets, and deployment windows.
+
+Before deployment, we confirm:
+
+* Application version.
+* Expected changes.
+* Configuration changes.
+* Database changes if applicable.
+* Deployment timing.
+* Rollback plan.
+
+After deployment, we monitor application health and communicate the deployment status to the relevant team.
+
+---
+
+## 45. How do developers and DevOps teams work together?
+
+**Answer:**
+
+Developers focus mainly on application development, while DevOps focuses on the infrastructure, automation, deployment, monitoring, and operational reliability.
+
+We work together through:
+
+* Git repositories.
+* Pull requests.
+* CI/CD pipelines.
+* Deployment processes.
+* Monitoring dashboards.
+* Incident management.
+* Regular communication.
+
+For example, when developers push code to Git, the automated pipeline builds, tests, scans, and prepares the application for deployment.
+
+---
+
+## 46. SonarQube integration in a pipeline — how do you do it?
+
+**Answer:**
+
+I integrate SonarQube into Jenkins by:
+
+1. Configuring the SonarQube server.
+2. Configuring authentication/token credentials.
+3. Installing/configuring the SonarQube Scanner.
+4. Adding a SonarQube analysis stage to the Jenkins pipeline.
+5. Running the code-quality analysis.
+6. Checking the SonarQube Quality Gate.
+7. Allowing deployment only when the required quality criteria are satisfied.
+
+This helps identify code-quality issues, bugs, vulnerabilities, and maintainability problems before deployment.
+
+---
+
+## 47. What happens if the SonarQube Quality Gate fails?
+
+**Answer:**
+
+If the Quality Gate fails, the pipeline can be configured to stop before deployment.
+
+This prevents code that does not meet the defined quality requirements from reaching production.
+
+For example:
+
+```text
+Build
+ ↓
+Test
+ ↓
+SonarQube
+ ↓
+Quality Gate FAILED
+ ↓
+Pipeline STOPPED
+ ↓
+No Production Deployment
+```
+
+---
+
+## 48. Why did you add Trivy scanning before deployment?
+
+**Answer:**
+
+Trivy is used to identify security vulnerabilities in container images and, depending on the configuration, other artifacts such as filesystems and dependencies.
+
+We use it before deployment so that known vulnerabilities can be identified before the image reaches production.
+
+A typical flow is:
+
+```text
+Docker Build
+     ↓
+Trivy Scan
+     ↓
+If acceptable → Push/Deploy
+If unacceptable → Stop Pipeline
+```
+
+This improves the security posture of the deployment process.
+
+---
+
+## 49. Where do you store secrets in a pipeline?
+
+**Answer:**
+
+Secrets should never be hard-coded in source code or Jenkinsfiles.
+
+Depending on the environment, I use:
+
+* Jenkins Credentials Manager.
+* Kubernetes Secrets.
+* AWS Secrets Manager.
+* IAM roles.
+* Other approved enterprise secret-management solutions.
+
+For AWS workloads, **IAM roles are preferred over long-lived access keys whenever possible**.
+
+---
+
+# 5. Docker & Containerization
+
+## 50. What problems does Docker solve?
+
+**Answer:**
+
+Docker helps solve:
+
+* Environment inconsistency.
+* Dependency conflicts.
+* "Works on my machine" problems.
+* Deployment portability.
+* Application isolation.
+* Faster and more consistent deployments.
+
+For example, a Java application can be packaged with its required runtime and dependencies so that the same container image can be used across development, testing, staging, and production.
+
+---
+
+## 51. Why do we containerize applications?
+
+**Answer:**
+
+Containerization provides:
+
+* Consistent environments.
+* Faster deployments.
+* Application isolation.
+* Better resource utilization.
+* Easier scaling.
+* Portability.
+* Simplified dependency management.
+
+For example, instead of installing Java and application dependencies separately on every server, we can package the application and its runtime requirements into a Docker image.
+
+---
+
+## 52. What is the difference between a Docker image and a container?
+
+**Answer:**
+
+A **Docker image** is a static, immutable package containing the application, dependencies, libraries, and required filesystem layers.
+
+A **container** is a running instance created from that image.
+
+A simple analogy is:
+
+```text
+Image      → Blueprint
+Container  → Running instance created from the blueprint
+```
+
+---
+
+## 53. How do you manage Docker image versions?
+
+**Answer:**
+
+I use meaningful and immutable tags such as:
+
+```text
+myapp:1.2.3
+myapp:build-125
+myapp:<git-commit-id>
+```
+
+I avoid relying on the `latest` tag for production deployments because it does not uniquely identify a specific version.
+
+Versioned images make deployments traceable and make rollback easier.
+
+---
+
+## 54. What are the important Dockerfile instructions?
+
+**Answer:**
+
+Important Dockerfile instructions include:
+
+* `FROM` – Specifies the base image.
+* `WORKDIR` – Sets the working directory.
+* `COPY` – Copies files into the image.
+* `RUN` – Executes commands during image build.
+* `EXPOSE` – Documents the intended application port.
+* `ENV` – Defines environment variables.
+* `CMD` – Provides the default command.
+* `ENTRYPOINT` – Defines the primary executable.
+
+---
+
+## 55. How do you keep Docker images lightweight?
+
+**Answer:**
+
+I use several approaches:
+
+* Lightweight base images where appropriate.
+* Multi-stage Docker builds.
+* Distroless images when suitable.
+* Removing unnecessary packages.
+* Using `.dockerignore`.
+* Avoiding unnecessary files in the image.
+* Installing only required dependencies.
+* Cleaning package caches where applicable.
+
+For example, a multi-stage build can compile an application in one image and copy only the required runtime artifacts into the final image.
+
+---
+
+## 56. How do you reduce Docker image size?
+
+**Answer:**
+
+I reduce image size by:
+
+1. Choosing an appropriate lightweight base image.
+2. Using multi-stage builds.
+3. Removing unnecessary dependencies.
+4. Using `.dockerignore`.
+5. Avoiding unnecessary files.
+6. Keeping the runtime image separate from build tools.
+7. Cleaning package-manager caches where appropriate.
+
+Smaller images improve download time, startup time, and storage efficiency.
+
+---
+
+## 57. What container-related issues have you faced?
+
+**Answer:**
+
+Some issues I have encountered include:
+
+* Incorrect environment variables.
+* Port mismatches.
+* Image size problems.
+* Image version mismatches.
+* Container crashes due to memory limits.
+* Permission issues.
+* Disk space issues on container hosts/nodes.
+
+I troubleshoot these by checking container logs, configuration, resource limits, image versions, and runtime environment.
+
+---
+
+## 58. What Docker-related issues have you faced in production?
+
+**Answer:**
+
+Some production issues I have faced include:
+
+* Large Docker image sizes.
+* Containers crashing because of memory limits.
+* Incorrect image versions being deployed.
+* Port configuration problems.
+* Environment-variable issues.
+* Disk space problems on nodes.
+
+For example, if a container repeatedly crashes due to memory pressure, I check container resource limits, application behavior, node capacity, and monitoring metrics before making changes.
+
+---
+
+# 6. Kubernetes & AWS EKS
+
+## 59. What is Kubernetes and what is EKS?
+
+**Answer:**
+
+**Kubernetes** is an open-source container orchestration platform used to deploy, manage, scale, and maintain containerized applications.
+
+**Amazon EKS (Elastic Kubernetes Service)** is AWS's managed Kubernetes service.
+
+EKS manages the Kubernetes control plane for us, while we manage the workloads and worker infrastructure depending on the architecture.
+
+---
+
+## 60. Explain Kubernetes architecture.
+
+**Answer:**
+
+Kubernetes architecture is broadly divided into the **control plane** and **worker nodes**.
+
+### Control Plane
+
+Important components include:
+
+* **API Server** – Entry point for Kubernetes API requests.
+* **etcd** – Stores Kubernetes cluster state.
+* **Scheduler** – Determines which node should run a pod.
+* **Controller Manager** – Runs controllers that maintain the desired state.
+
+### Worker Nodes
+
+Worker nodes generally contain:
+
+* **Kubelet** – Communicates with the control plane and manages pods on the node.
+* **Container runtime** – Runs containers.
+* **Networking components** – Enable pod and service networking.
+
+Applications run inside **Pods**, which are the smallest deployable units in Kubernetes.
+
+---
+
+## 61. How do you deploy applications using Kubernetes?
+
+**Answer:**
+
+I generally use Kubernetes **Deployments** to manage application Pods.
+
+A Deployment defines the desired state, such as:
+
+* Number of replicas.
+* Container image.
+* Resource requirements.
+* Update strategy.
+
+I use **Services** to provide stable networking access to Pods.
+
+Other resources I commonly work with include:
+
+* ConfigMaps.
+* Secrets.
+* Ingress.
+* Namespaces.
+* Horizontal Pod Autoscalers.
+
+For example:
+
+```text
+Deployment
+    ↓
+Pods
+    ↓
+Service
+    ↓
+Ingress / Load Balancer
+```
+
+---
+
+## 62. How do you check logs of failing applications or pods?
+
+**Answer:**
+
+For Kubernetes, I use:
+
+```bash
+kubectl logs pod-name
+```
+
+For a specific container:
+
+```bash
+kubectl logs pod-name -c container-name
+```
+
+I also use:
+
+```bash
+kubectl describe pod pod-name
+```
+
+and:
+
+```bash
+kubectl get events
+```
+
+I check:
+
+* Container logs.
+* Pod events.
+* Image pull errors.
+* Resource limits.
+* Health probes.
+* Environment variables.
+* ConfigMaps and Secrets.
+* Node health.
+
+---
+
+## 63. Pods keep restarting. How do you debug?
+
+**Answer:**
+
+First, I check the pod status:
+
+```bash
+kubectl get pods
+```
+
+Then:
+
+```bash
+kubectl describe pod pod-name
+```
+
+and:
+
+```bash
+kubectl logs pod-name
+```
+
+If the container restarted, I may check the previous container logs:
+
+```bash
+kubectl logs pod-name --previous
+```
+
+I investigate:
+
+* Application crashes.
+* OOMKilled events.
+* Liveness/readiness probe failures.
+* Incorrect configuration.
+* Missing Secrets or ConfigMaps.
+* Image problems.
+* Resource limits.
+* Dependency failures.
+* Node problems.
+
+I identify the root cause before changing the deployment.
+
+---
+
+## 64. How does Kubernetes help avoid downtime?
+
+**Answer:**
+
+Kubernetes provides several features that help improve application availability:
+
+* Self-healing.
+* Replica management.
+* Rolling updates.
+* Service-based load balancing.
+* Readiness and liveness probes.
+* Horizontal scaling.
+* Automatic pod rescheduling.
+* Deployment rollback.
+
+For example, during a rolling update, Kubernetes can gradually replace old Pods with new Pods while maintaining available replicas.
+
+---
+
+## 65. What advantages did EKS give over running containers directly on EC2?
+
+**Answer:**
+
+EKS provides several advantages compared with manually managing containers directly on EC2:
+
+* Managed Kubernetes control plane.
+* High availability.
+* Kubernetes-native deployments.
+* Self-healing.
+* Rolling updates.
+* Service discovery.
+* Load balancing integration.
+* Horizontal scaling.
+* Better workload orchestration.
+* Reduced operational overhead for the control plane.
+
+Compared with manually running containers on EC2, EKS provided us with better scalability, automated workload management, self-healing, and standardized Kubernetes deployment practices.
+
+---
+
+# 7. AWS & Networking
+
+## 66. Can an EC2 instance create an S3 bucket without an access key?
+
+**Answer:**
+
+Yes.
+
+Instead of configuring a static AWS access key and secret key on the EC2 instance, we can attach an **IAM role** to the EC2 instance through an instance profile.
+
+The IAM role can contain the required permissions, such as:
+
+```text
+s3:CreateBucket
+```
+
+if that action is required and allowed by the organization's policy.
+
+The application can then obtain temporary credentials through the AWS SDK/instance metadata service.
+
+This is more secure than storing long-lived access keys on the server.
+
+---
+
+## 67. Why do we use a VPC in AWS?
+
+**Answer:**
+
+An **Amazon VPC (Virtual Private Cloud)** provides an isolated and controlled networking environment within AWS.
+
+It allows us to define:
+
+* IP address ranges.
+* Subnets.
+* Route tables.
+* Internet connectivity.
+* NAT connectivity.
+* Security groups.
+* Network ACLs.
+
+In real-world environments, organizations often create custom VPCs because they need better control over networking, security, routing, isolation, and compliance requirements.
+
+---
+
+## 68. What is a VPC?
+
+**Answer:**
+
+A VPC is a logically isolated virtual network in AWS.
+
+We define an IP address range for the VPC and then create subnets, routing, and security controls within it.
+
+For example:
+
+```text
+VPC
+10.0.0.0/16
+```
+
+Inside the VPC we can create public and private subnets and control communication using route tables, security groups, and network ACLs.
+
+---
+
+## 69. Why do you need a custom VPC instead of the default VPC?
+
+**Answer:**
+
+The default VPC is useful for getting started, but production environments often require more control.
+
+With a custom VPC, we can define:
+
+* Our own CIDR ranges.
+* Public and private subnets.
+* Availability Zone distribution.
+* Route tables.
+* NAT gateways.
+* Internet gateways.
+* Security controls.
+* Network segmentation.
+
+This gives organizations better control over security, isolation, routing, and compliance.
+
+---
+
+## 70. What is a CIDR block?
+
+**Answer:**
+
+CIDR stands for **Classless Inter-Domain Routing**.
+
+A CIDR block defines a range of IP addresses.
+
+For example:
+
+```text
+10.0.0.0/16
+```
+
+could be used as the CIDR range for a VPC.
+
+We can divide that range into smaller subnet ranges, such as:
+
+```text
+10.0.1.0/24
+10.0.2.0/24
+10.0.3.0/24
+```
+
+---
+
+## 71. What is a subnet and why is it required?
+
+**Answer:**
+
+A subnet is a logical subdivision of a VPC's IP address range.
+
+In AWS, each subnet is associated with **one Availability Zone**.
+
+We use multiple subnets to:
+
+* Separate workloads.
+* Create public/private network boundaries.
+* Improve availability.
+* Distribute workloads across Availability Zones.
+* Control routing.
+
+For example, a production architecture may have:
+
+```text
+VPC
+ ├── Public Subnet - AZ1
+ ├── Public Subnet - AZ2
+ ├── Private Subnet - AZ1
+ └── Private Subnet - AZ2
+```
+
+This architecture helps improve availability and network isolation.
+
+---
+
+## 72. What is the difference between a public and private subnet?
+
+**Answer:**
+
+A **public subnet** has a route to an **Internet Gateway** through its route table.
+
+Resources in a public subnet can have public IP addresses and can communicate with the internet when security and routing rules allow it.
+
+A **private subnet** does not have a direct route to the Internet Gateway.
+
+If resources in a private subnet need outbound internet access, they can typically use a **NAT Gateway** in a public subnet.
+
+For example:
+
+```text
+Internet
+   |
+Internet Gateway
+   |
+Public Subnet
+   |
+NAT Gateway
+   |
+Private Subnet
+```
+
+Private subnets are commonly used for application servers, Kubernetes worker nodes, and databases.
+
+---
+
+# 8. Terraform & Infrastructure as Code
+
+## 73. Why do you use Terraform for infrastructure provisioning?
+
+**Answer:**
+
+Terraform provides **Infrastructure as Code (IaC)**.
+
+It allows us to define infrastructure in configuration files and manage it through version control.
+
+Benefits include:
+
+* Automation.
+* Repeatability.
+* Version control.
+* Consistency.
+* Reusable modules.
+* Reduced manual configuration.
+* Easier review and auditing.
+
+For example, instead of manually creating an AWS VPC or EKS infrastructure through the console, we can define it in Terraform and deploy it consistently.
+
+---
+
+## 74. How do you store and protect Terraform state?
+
+**Answer:**
+
+For team environments, Terraform state should be stored remotely rather than locally.
+
+A common AWS setup is:
+
+```text
+Terraform
+    ↓
+S3 Remote State
+```
+
+The S3 bucket should have:
+
+* Encryption.
+* Versioning.
+* Restricted IAM access.
+* Appropriate bucket policies.
+
+State locking should also be configured to prevent multiple users or pipelines from modifying the same state simultaneously. Depending on the Terraform/backend version and organizational setup, locking can be implemented using supported S3 locking mechanisms or the legacy DynamoDB locking approach.
+
+The important principle is that state must be **secure, versioned, backed up, and protected from concurrent modification**.
+
+---
+
+## 75. Why did you choose Terraform for provisioning?
+
+**Answer:**
+
+I chose Terraform because it provides:
+
+* Infrastructure as Code.
+* Repeatable deployments.
+* Version control.
+* Automation.
+* Consistent infrastructure.
+* Reusable modules.
+* Easier infrastructure changes.
+* Better collaboration.
+
+For example, if I need to create the same infrastructure for development, staging, and production, Terraform helps standardize the process.
+
+---
+
+# 9. Monitoring & Observability
+
+## 76. What role does Grafana play?
+
+**Answer:**
+
+Grafana is primarily used for **visualization, dashboards, and alerting**.
+
+In our environment, Grafana can display metrics collected by Prometheus.
+
+For example, dashboards can show:
+
+* CPU usage.
+* Memory usage.
+* Pod restarts.
+* Request rates.
+* Error rates.
+* Application latency.
+* Node health.
+
+This helps DevOps teams quickly identify abnormal behavior and troubleshoot production issues.
+
+---
+
+## 77. What metrics indicate an unhealthy application?
+
+**Answer:**
+
+Important indicators include:
+
+* High request latency.
+* Increased error rates.
+* HTTP 5xx responses.
+* High CPU usage.
+* High memory usage.
+* Frequent pod restarts.
+* Failed health checks.
+* Increased request failures.
+* Disk pressure.
+* Network errors.
+
+I usually correlate multiple metrics rather than relying on a single metric.
+
+---
+
+## 78. How do you monitor production systems?
+
+**Answer:**
+
+I use monitoring and observability tools such as **Prometheus and Grafana**.
+
+Prometheus collects and stores time-series metrics, while Grafana provides dashboards and visualization.
+
+I monitor:
+
+* Infrastructure health.
+* Kubernetes nodes.
+* Pod health.
+* CPU and memory.
+* Application performance.
+* Request rates.
+* Error rates.
+* Pod restarts.
+
+Alerts help identify issues before they become major production incidents.
+
+---
+
+# 10. Application & Production Troubleshooting
+
+## 79. Application is not responding, but the server is reachable. How do you check it?
+
+**Answer:**
+
+First, I confirm that the server itself is reachable using SSH or another appropriate connectivity test.
+
+Then I check:
+
+### Application process
+
+```bash
+ps aux
+systemctl status application
+```
+
+### Port
+
+```bash
+ss -tulnp
+lsof -i :8080
+```
+
+### Logs
+
+```bash
+tail -f application.log
+journalctl -u application
+```
+
+### System resources
+
+```bash
+top
+free -h
+df -h
+```
+
+I also check dependencies such as databases, APIs, DNS, and network connectivity.
+
+If the application is unhealthy, I identify the root cause before restarting it.
+
+---
+
+## 80. Where do you look first when an application fails?
+
+**Answer:**
+
+I generally start with **application logs and monitoring metrics** because they provide direct information about what happened.
+
+Then I check:
+
+* Service status.
+* Pod status if Kubernetes is involved.
+* CPU/memory.
+* Disk.
+* Network.
+* Dependencies.
+* Recent deployments or configuration changes.
+
+This approach helps me move from symptoms to the actual root cause.
+
+---
+
+## 81. If a deployment fails in the pipeline, what will you do?
+
+**Answer:**
+
+First, I check the Jenkins logs and identify the exact failed stage.
+
+Then I verify:
+
+* Docker image availability.
+* Image tag/version.
+* Kubernetes manifests.
+* ConfigMaps and Secrets.
+* Resource requirements.
+* Kubernetes events.
+* Application logs.
+* Recent configuration changes.
+
+If required, I roll back to the previous stable version.
+
+After fixing the root cause, I redeploy and monitor the application carefully.
+
+---
+
+## 82. What does production readiness mean?
+
+**Answer:**
+
+Production readiness means an application is prepared to operate reliably in a real production environment.
+
+It should have:
+
+* Appropriate security controls.
+* Monitoring and alerting.
+* Centralized or accessible logging.
+* Scalability.
+* Health checks.
+* Backup and recovery procedures.
+* Rollback capability.
+* Disaster recovery considerations.
+* Appropriate resource limits.
+* Documented operational procedures.
+
+The exact requirements depend on the organization's production-readiness standards.
+
+---
+
+# 11. Career Transition & Technical Background
+
+## 83. Walk me through your background and how you moved toward DevOps.
+
+**Answer:**
+
+I started my career as a **Python intern**, where I worked on backend development and API integrations for a chatbot application.
+
+This gave me a strong foundation in application development, APIs, requests and responses, and application logic.
+
+Later, I worked as a **Technical Support Associate**, where I gained real-world exposure to production issues, customer-facing systems, troubleshooting, and the importance of application availability and reliability.
+
+Over time, I became increasingly interested in automation, deployment, cloud infrastructure, and system reliability.
+
+That naturally led me toward DevOps, where I could combine my development knowledge with infrastructure, automation, cloud, and production operations.
+
+---
+
+## 84. What motivated you to move from Python to DevOps?
+
+**Answer:**
+
+I started my career as a Python intern, where I worked on backend development and multiple API integrations for a chatbot application.
+
+My work involved consuming REST APIs, handling requests and responses, implementing error handling, and ensuring reliable communication between the chatbot and external services using Python.
+
+Later, as a Technical Support Associate, I gained exposure to production issues, customer-facing systems, troubleshooting, and system reliability.
+
+After a short career gap due to family reasons, I wanted to restart my IT career in a role that combined my development knowledge with infrastructure, automation, cloud, and production ownership.
+
+DevOps was a natural fit because it combines **development, automation, cloud infrastructure, deployment, monitoring, and reliability**.
+
+That motivated me to transition into DevOps and continue growing in this field.
+
+---
+
+## 85. Tell me about your transition from software development to DevOps.
+
+**Answer:**
+
+My transition started with my experience as a Python developer and intern.
+
+During my Python internship, I worked on backend development and API integrations for a chatbot application. This helped me understand how applications are developed and how different systems communicate.
+
+Later, my technical support experience exposed me to production problems and the importance of system availability and reliability.
+
+I became interested in automating deployments, managing cloud infrastructure, and improving application reliability.
+
+I therefore moved toward DevOps and developed hands-on skills in **AWS, Jenkins, Docker, Kubernetes, Terraform, monitoring, and GitOps**.
+
+---
+
+# 12. Docker, Kubernetes & Deployment Scenarios
+
+## 86. How did you handle Docker versioning?
+
+**Answer:**
+
+We used meaningful image tags to identify different application versions.
+
+Examples include:
+
+```text
+application:1.2.0
+application:build-125
+application:<git-commit-id>
+```
+
+We can also associate versions with environments, although immutable version identifiers are preferred for reliable deployments.
+
+The purpose is to make every deployment traceable and support easy rollback.
+
+---
+
+## 87. What happens if a container crashes?
+
+**Answer:**
+
+First, I check the container status and logs.
+
+For Docker:
+
+```bash
+docker ps -a
+docker logs container-id
+```
+
+For Kubernetes:
+
+```bash
+kubectl get pods
+kubectl logs pod-name
+kubectl describe pod pod-name
+```
+
+I investigate:
+
+* Application errors.
+* Exit codes.
+* Memory limits.
+* Environment variables.
+* Configuration.
+* Health probes.
+* Image issues.
+* Dependencies.
+
+In Kubernetes, the platform may automatically restart failed containers depending on the workload configuration and Pod lifecycle.
+
+---
+
+## 88. How do you troubleshoot a Kubernetes deployment?
+
+**Answer:**
+
+I follow a structured approach:
+
+```bash
+kubectl get deployment
+kubectl get pods
+kubectl describe deployment deployment-name
+kubectl describe pod pod-name
+kubectl logs pod-name
+kubectl get events
+```
+
+Then I check:
+
+* Replica count.
+* Pod status.
+* Image availability.
+* Configuration.
+* Secrets.
+* Resource limits.
+* Health probes.
+* Service configuration.
+* Node capacity.
+
+I also check Argo CD status if the deployment is managed through GitOps.
+
+---
+
+# 13. Security / DevSecOps
+
+## 89. What is DevSecOps?
+
+**Answer:**
+
+DevSecOps means integrating **security into the DevOps lifecycle** rather than treating security as a separate step at the end.
+
+Security checks can be integrated into CI/CD using tools such as:
+
+* SonarQube.
+* Trivy.
+* Secret scanning tools.
+* Dependency scanning tools.
+* Container image scanning.
+
+For example:
+
+```text
+Code
+ ↓
+Build
+ ↓
+Test
+ ↓
+SonarQube
+ ↓
+Trivy
+ ↓
+Docker Registry
+ ↓
+Deployment
+```
+
+This helps identify security and quality issues earlier in the software delivery lifecycle.
+
+---
+
+## 90. Why is SonarQube used in DevSecOps?
+
+**Answer:**
+
+SonarQube helps analyze source code for issues related to:
+
+* Code quality.
+* Bugs.
+* Vulnerabilities.
+* Security-related issues.
+* Code smells.
+* Maintainability.
+
+It can be integrated into Jenkins so that the pipeline checks the Quality Gate before continuing to deployment.
+
+---
+
+## 91. Why is Trivy used in DevSecOps?
+
+**Answer:**
+
+Trivy is commonly used for vulnerability scanning.
+
+For containerized applications, it can scan Docker images for known vulnerabilities in operating-system packages and application dependencies, depending on configuration.
+
+For example:
+
+```text
+Developer Code
+      ↓
+Docker Build
+      ↓
+Trivy Scan
+      ↓
+Vulnerabilities within policy?
+      ↓
+Yes → Continue
+No  → Stop Pipeline
+```
+
+This helps move security checks earlier in the delivery process.
+
+---
+
+# 14. Git, Docker & Application Delivery
+
+## 92. How does code move from development to a Kubernetes production environment?
+
+**Answer:**
+
+The general process is:
+
+```text
+Developer
+   ↓
+GitHub
+   ↓
+Jenkins
+   ↓
+Build & Test
+   ↓
+SonarQube
+   ↓
+Docker Build
+   ↓
+Trivy Scan
+   ↓
+Container Registry
+   ↓
+GitOps Repository
+   ↓
+Argo CD
+   ↓
+EKS
+   ↓
+Production
+```
+
+This process provides automation, traceability, security checks, and consistent deployments.
+
+---
+
+## 93. Why do you manage Docker image tagging and versioning?
+
+**Answer:**
+
+Image tagging and versioning help with:
+
+* Traceability.
+* Reproducibility.
+* Rollbacks.
+* Release management.
+* Debugging.
+* Environment consistency.
+
+For production, I prefer immutable and identifiable tags such as application versions or Git commit IDs instead of relying only on `latest`.
+
+---
+
+# 15. AWS IAM & Cloud Security
+
+## 94. How do you manage secure access using IAM?
+
+**Answer:**
+
+I follow the **principle of least privilege**.
+
+IAM policies should grant only the permissions required for a user, application, or AWS service to perform its job.
+
+I use:
+
+* IAM roles.
+* IAM policies.
+* Appropriate permissions.
+* Temporary credentials where possible.
+* Role-based access for AWS services.
+* MFA for appropriate human users.
+* Regular permission review.
+
+For workloads, IAM roles are preferred over storing long-lived access keys.
+
+---
+
+## 95. What are IAM roles?
+
+**Answer:**
+
+An IAM role is an AWS identity that can be assumed by trusted entities such as:
+
+* AWS services.
+* EC2 instances.
+* Applications.
+* Kubernetes workloads.
+* Authorized users.
+
+Roles provide temporary credentials instead of requiring applications to store permanent access keys.
+
+For example, an EC2 instance can assume an IAM role that allows it to access a specific S3 bucket without storing an AWS access key on the server.
+
+---
+
+# 16. Kubernetes, AWS & Infrastructure Ownership
+
+## 96. How do you manage cloud infrastructure?
+
+**Answer:**
+
+I manage cloud infrastructure using **AWS and Terraform**.
+
+Typical infrastructure components include:
+
+* VPC.
+* Subnets.
+* Route tables.
+* Security groups.
+* EC2.
+* EKS.
+* IAM.
+* Other required AWS resources.
+
+Terraform allows me to define the infrastructure as code, review changes, and deploy infrastructure consistently.
+
+---
+
+## 97. What was your role in managing AWS EKS?
+
+**Answer:**
+
+My responsibilities included supporting the Kubernetes environment and deploying applications to EKS.
+
+I worked with:
+
+* Kubernetes Deployments.
+* Services.
+* ConfigMaps.
+* Secrets.
+* Pods.
+* Resource configurations.
+* Application troubleshooting.
+* Monitoring.
+* Argo CD-based deployments.
+
+I also worked with the underlying AWS infrastructure using Terraform.
+
+---
+
+## 98. How do you troubleshoot a failed EKS application?
+
+**Answer:**
+
+I follow both Kubernetes and AWS troubleshooting steps.
+
+First:
+
+```bash
+kubectl get pods
+kubectl describe pod pod-name
+kubectl logs pod-name
+kubectl get events
+```
+
+Then I check:
+
+* Deployment status.
+* Service configuration.
+* Ingress/load balancer.
+* Security groups.
+* Networking.
+* IAM permissions.
+* Node health.
+* CPU and memory.
+* Container image.
+* ConfigMaps and Secrets.
+
+If the application is reachable internally but not externally, I specifically investigate the Service, Load Balancer/Ingress, security rules, routes, and application port configuration.
+
+---
+
+# 17. General DevOps Interview Questions
+
+## 99. What advantages did automation provide in your project?
+
+**Answer:**
+
+Automation reduced manual effort and made deployments more consistent.
+
+For example, Jenkins automated:
+
+* Code checkout.
+* Build.
+* Testing.
+* Docker image creation.
+* Security and quality checks.
+* Image publishing.
+
+Argo CD automated Kubernetes deployment synchronization.
+
+Terraform automated infrastructure provisioning.
+
+Together, these tools reduced human error and improved deployment speed and reliability.
+
+---
+
+## 100. What would you do if production deployment introduced an issue?
+
+**Answer:**
+
+First, I would assess the impact and determine whether the issue is affecting users or critical functionality.
+
+Then I would:
+
+1. Check monitoring dashboards.
+2. Review application and Kubernetes logs.
+3. Compare the current release with the previous stable version.
+4. Identify the root cause.
+5. Roll back if immediate recovery is required.
+6. Communicate the incident to the relevant team.
+7. Fix the underlying issue.
+8. Test the fix.
+9. Redeploy.
+10. Monitor the system after recovery.
+
+The priority during a production incident is **service recovery first, followed by root-cause analysis and prevention**.
+
+---
+
+## 101. Which DevOps tool are you most confident in and why?
+
+**Answer:**
+
+I am particularly confident with **AWS, Kubernetes/EKS, and Jenkins** because I have hands-on experience using them for application deployment, CI/CD automation, infrastructure support, and production troubleshooting.
+
+Jenkins gives me experience with automation and CI/CD.
+
+Kubernetes/EKS gives me experience with container orchestration and production deployments.
+
+AWS gives me experience with cloud infrastructure, networking, IAM, and scalable systems.
+
+---
+
+## 102. What environments have you supported, and what were your roles?
+
+**Answer:**
+
+I have supported:
+
+* Development.
+* Staging.
+* Production.
+
+My responsibilities included:
+
+* Application deployments.
+* CI/CD pipeline management.
+* Production monitoring.
+* Troubleshooting.
+* Infrastructure support.
+* Kubernetes troubleshooting.
+* Pipeline failure resolution.
+* Application availability and performance monitoring.
+
+Production support was especially important because changes had to be implemented carefully to minimize downtime and business impact.
+
+---
+
+## 103. Why did you choose Terraform for infrastructure provisioning?
+
+**Answer:**
+
+I chose Terraform because it allows infrastructure to be managed as **code**.
+
+The major benefits are:
+
+* Infrastructure automation.
+* Version control.
+* Repeatability.
+* Consistency.
+* Reusable modules.
+* Collaboration.
+* Change tracking.
+* Reduced manual configuration.
+
+For example, instead of manually creating AWS resources through the console, I can define them in Terraform, review the changes, and apply them consistently across environments.
+
+This makes infrastructure easier to manage, reproduce, and maintain.
+
+---
+
+# Quick Interview Revision — Key Commands
+
+## Linux
+
+```bash
+top
+htop
+free -h
+df -h
+du -sh /var/log/*
+uptime
+vmstat 1 5
+ps aux
+ps aux --sort=-%cpu
+```
+
+## Logs
+
+```bash
+tail -f logfile
+less logfile
+grep "ERROR" logfile
+journalctl -u service-name
+journalctl -u service-name -f
+```
+
+## Processes & Services
+
+```bash
+ps aux
+systemctl status service-name
+systemctl restart service-name
+systemctl enable service-name
+```
+
+## Networking
+
+```bash
+ss -tulnp
+netstat -tulnp
+lsof -i :8080
+curl http://localhost:8080
+```
+
+## Docker
+
+```bash
+docker ps
+docker ps -a
+docker images
+docker logs container-id
+docker inspect container-id
+docker build -t image:tag .
+docker run image:tag
+docker push image:tag
+```
+
+## Kubernetes
+
+```bash
+kubectl get pods
+kubectl get deployments
+kubectl get services
+kubectl describe pod pod-name
+kubectl logs pod-name
+kubectl logs pod-name --previous
+kubectl get events
+kubectl get nodes
+```
+
+## Git
+
+```bash
+git clone
+git status
+git add .
+git commit -m "message"
+git push
+git pull
+git checkout
+git branch
+```
+
+## Terraform
+
+```bash
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+terraform destroy
+```
+
+---
+
+# Final Interview Strategy
+
+When answering DevOps interview questions, I should try to structure my answers in this order:
+
+**1. Define the concept → 2. Explain how I used it → 3. Give a real-world example → 4. Mention troubleshooting/best practices.**
+
+For example:
+
+> **Question:** Why did you use Kubernetes?
+
+> **Answer:** Kubernetes is a container orchestration platform used to deploy, manage, scale, and maintain containerized applications. In my project, we used AWS EKS to run our containerized applications. I worked with Deployments, Services, ConfigMaps, Secrets, and monitoring. Kubernetes provided features such as self-healing, rolling updates, scaling, and service discovery, which helped us maintain reliable production deployments.
+
+This approach makes the answer **technical, practical, and interview-friendly** instead of sounding like a textbook definition.
+
+---
+
+# Important Interview Reminder
+
+When discussing project experience, always distinguish between:
+
+* **What you personally implemented**
+* **What you supported**
+* **What your team implemented**
+* **What you understand theoretically**
+
+For example, instead of saying:
+
+> "I designed the entire AWS architecture."
+
+If you mainly worked on existing infrastructure, say:
+
+> "I worked on provisioning and maintaining AWS infrastructure using Terraform and supported components such as VPC, EKS, IAM, and EC2."
+
+This makes the answer more credible and easier to defend when the interviewer asks follow-up questions.
